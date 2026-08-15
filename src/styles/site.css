@@ -89,6 +89,40 @@ h1,h2,h3,h4{
 /* ============ SHELL / WINDOW ============ */
 .wrap{max-width:1060px;margin:0 auto;padding:22px 16px 70px}
 
+/* ============ TOP SOCIAL BAR ============
+   Sits above the tabs on every page — the first thing anyone sees,
+   so people can reach the real accounts without scrolling. */
+.topbar{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  border:1px solid var(--edge);border-radius:var(--r);
+  background:var(--panel-2);padding:8px 10px;margin-bottom:12px;
+}
+.topbar-label{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-4);white-space:nowrap;
+}
+.topbar-label::before{content:"// "}
+.topbar-links{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.topbar-links a{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--edge-hot);border-radius:var(--r);
+  background:var(--panel);padding:7px 11px;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-2);transition:.16s;
+}
+.topbar-links a:hover{
+  background:var(--panel-3);border-color:var(--ink-3);
+  color:#fff;transform:translateY(-1px);
+}
+.topbar-links svg{width:14px;height:14px;flex-shrink:0;fill:currentColor}
+
+@media(max-width:860px){
+  .topbar{gap:8px}
+  .topbar-links{margin-left:0;width:100%}
+  .topbar-links a{flex:1;justify-content:center;padding:8px 6px}
+  .topbar-links a span{display:none}
+}
+
 .tabs{display:flex;gap:4px;align-items:flex-end;padding-left:4px;flex-wrap:wrap}
 .tab{
   background:var(--panel-2);border:1px solid var(--edge);border-bottom:none;
@@ -173,7 +207,7 @@ h1,h2,h3,h4{
 .sec-h::after{content:"";flex:1;height:1px;background:var(--edge-hot)}
 
 /* ============ SOCIAL ROW ============ */
-.social{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.social{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
 .social a{
   display:flex;align-items:center;justify-content:center;gap:9px;
   border:1px solid var(--edge-hot);border-radius:var(--r);

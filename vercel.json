@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/((?!assets/|app-ads.txt|favicon.ico).*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/app-ads.txt",
