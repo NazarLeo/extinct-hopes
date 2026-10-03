@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import Block from '../components/Block';
 import Footer from '../components/Footer';
+import JoinTheLab from '../components/JoinTheLab';
+import SocialLink from '../components/SocialLink';
 import Window from '../components/Window';
 import { avatar, cctv, chapterArt, games } from '../data/games';
+import { metaFor } from '../data/seo';
 import { playStoreUrl, socials } from '../data/socials';
 import useMeta from '../hooks/useMeta';
+import { trackPlay } from '../lib/analytics';
 
 const signalLog = [
   ['01', 'power draw spike, sector B', '03:12'],
@@ -22,15 +26,7 @@ const facts = [
 ];
 
 export default function Home() {
-  useMeta({
-    title: 'Extinct Hopes',
-    description:
-      'Extinct Hopes — solo horror game developer. Three connected first-person horror games in one Soviet-era facility. Free on Android.',
-    ogTitle: 'Extinct Hopes // Project Dream',
-    ogDescription:
-      'One facility. Two survivors. Free-roam first-person horror on Android.',
-    ogImage: avatar,
-  });
+  useMeta(metaFor('/'));
 
   return (
     <>
@@ -61,16 +57,9 @@ export default function Home() {
             <ol>
               {socials.map((s) => (
                 <li key={s.id}>
-                  <a
-                    href={s.href}
-                    target={s.href.startsWith('mailto:') ? undefined : '_blank'}
-                    rel={s.href.startsWith('mailto:') ? undefined : 'noopener'}
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d={s.path} />
-                    </svg>
+                  <SocialLink social={s} where="profile">
                     {s.name}
-                  </a>
+                  </SocialLink>
                 </li>
               ))}
             </ol>
@@ -79,7 +68,13 @@ export default function Home() {
 
         {/* ACTIONS */}
         <div className="acts">
-          <a className="btn btn-go" href={playStoreUrl} target="_blank" rel="noopener">
+          <a
+            className="btn btn-go"
+            href={playStoreUrl}
+            target="_blank"
+            rel="noopener"
+            onClick={() => trackPlay('all', 'google_play')}
+          >
             Play all three — free
           </a>
           <Link className="btn btn-red" to="/#chapters">
@@ -185,19 +180,12 @@ export default function Home() {
         </div>
         <div className="social">
           {socials.map((s) => (
-            <a
-              key={s.id}
-              href={s.href}
-              target={s.href.startsWith('mailto:') ? undefined : '_blank'}
-              rel={s.href.startsWith('mailto:') ? undefined : 'noopener'}
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d={s.path} />
-              </svg>
+            <SocialLink key={s.id} social={s} where="elsewhere">
               {s.name}
-            </a>
+            </SocialLink>
           ))}
         </div>
+        <JoinTheLab variant="panel" />
       </section>
 
       <Footer

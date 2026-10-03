@@ -232,6 +232,20 @@ h1,h2,h3,h4{
   border-radius:13px;padding:5px 13px;color:var(--ink-3);font-size:10.5px;
 }
 
+/* ============ JOIN THE LAB (optional Discord call-to-action) ============
+   Only rendered when LINKS.discordInvite is set. Margins live on these
+   wrappers, so nothing is left behind when they are not rendered. */
+.lab-panel{margin-top:12px}
+.lab-panel .blk{margin-bottom:0}
+.lab-copy{margin:0 0 12px}
+.lab-line{margin:12px 0 0;font-size:12px;letter-spacing:.04em;color:var(--ink-3)}
+.lab-line a{
+  white-space:nowrap;
+  color:var(--ink-2);text-decoration:underline;
+  text-underline-offset:3px;text-decoration-color:var(--edge-live);
+}
+.lab-line a:hover{color:#fff;text-decoration-color:#fff}
+
 /* ============ MOTION ============ */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{

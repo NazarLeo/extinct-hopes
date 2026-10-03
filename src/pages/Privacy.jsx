@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Window from '../components/Window';
+import { metaFor } from '../data/seo';
 import { email } from '../data/socials';
 import useMeta from '../hooks/useMeta';
 
 export default function Privacy() {
-  useMeta({
-    title: 'Privacy Policy',
-    description: 'Privacy policy for the Extinct Hopes horror games on Google Play.',
-  });
+  useMeta(metaFor('/privacy'));
 
   return (
     <>

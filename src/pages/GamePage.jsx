@@ -2,22 +2,20 @@ import { Link } from 'react-router-dom';
 import Block from '../components/Block';
 import Footer from '../components/Footer';
 import Gallery from '../components/Gallery';
+import JoinTheLab from '../components/JoinTheLab';
+import PlayButtons from '../components/PlayButtons';
 import Trailer from '../components/Trailer';
 import Window from '../components/Window';
 import RichText from '../components/RichText';
 import { gameBySlug } from '../data/games';
+import { metaFor } from '../data/seo';
 import useMeta from '../hooks/useMeta';
+import { trackPlay } from '../lib/analytics';
 
 export default function GamePage({ slug }) {
   const g = gameBySlug(slug);
 
-  useMeta({
-    title: g.metaTitle,
-    description: g.metaDescription,
-    ogTitle: g.ogTitle,
-    ogDescription: g.ogDescription,
-    ogImage: g.ogImage,
-  });
+  useMeta(metaFor(g.path));
 
   return (
     <>
@@ -44,9 +42,7 @@ export default function GamePage({ slug }) {
               ))}
             </div>
             <div className="g-acts">
-              <a className="btn btn-go" href={g.store} target="_blank" rel="noopener">
-                ▶ Get it on Google Play
-              </a>
+              <PlayButtons game={g} />
               <a
                 className={g.secondaryAction.variant === 'red' ? 'btn btn-red' : 'btn'}
                 href={g.secondaryAction.href}
@@ -54,6 +50,7 @@ export default function GamePage({ slug }) {
                 {g.secondaryAction.label}
               </a>
             </div>
+            <JoinTheLab variant="line" game={g.slug} />
           </div>
         </div>
 
@@ -100,9 +97,10 @@ export default function GamePage({ slug }) {
             <a
               className="btn btn-go"
               style={{ width: '100%' }}
-              href={g.store}
+              href={g.links.googlePlay}
               target="_blank"
               rel="noopener"
+              onClick={() => trackPlay(g.slug, 'google_play')}
             >
               Download free ↗
             </a>

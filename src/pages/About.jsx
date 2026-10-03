@@ -2,9 +2,13 @@ import { Link } from 'react-router-dom';
 import Block from '../components/Block';
 import Footer from '../components/Footer';
 import Window from '../components/Window';
+import SocialLink from '../components/SocialLink';
+import { LINKS } from '../config/links';
 import { avatar } from '../data/games';
+import { metaFor } from '../data/seo';
 import { email, playStoreUrl, socials } from '../data/socials';
 import useMeta from '../hooks/useMeta';
+import { trackSocial } from '../lib/analytics';
 
 const rules = [
   <>
@@ -36,15 +40,7 @@ const spec = [
 ];
 
 export default function About() {
-  useMeta({
-    title: 'About Me',
-    description:
-      'Extinct Hopes — a solo developer building free-roam first-person horror for Android on Unreal Engine.',
-    ogTitle: 'Extinct Hopes // About',
-    ogDescription:
-      'Solo developer. Unreal Engine, Android, and a facility that keeps getting deeper.',
-    ogImage: avatar,
-  });
+  useMeta(metaFor('/about'));
 
   return (
     <>
@@ -144,7 +140,12 @@ export default function About() {
                 <p style={{ marginBottom: 0 }}>
                   Fan games and smaller experiments live on{' '}
                   <Link to="/fan-games">the fan games page</Link> and on{' '}
-                  <a href="https://gamejolt.com/@leni/games" target="_blank" rel="noopener">
+                  <a
+                    href={LINKS.gamejolt}
+                    target="_blank"
+                    rel="noopener"
+                    onClick={() => trackSocial('gamejolt')}
+                  >
                     GameJolt
                   </a>
                   .
@@ -161,17 +162,9 @@ export default function About() {
           </div>
           <div className="social">
             {socials.map((s) => (
-              <a
-                key={s.id}
-                href={s.href}
-                target={s.href.startsWith('mailto:') ? undefined : '_blank'}
-                rel={s.href.startsWith('mailto:') ? undefined : 'noopener'}
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d={s.path} />
-                </svg>
+              <SocialLink key={s.id} social={s} where="about">
                 {s.name}
-              </a>
+              </SocialLink>
             ))}
           </div>
         </div>
@@ -188,7 +181,13 @@ export default function About() {
             <a className="btn btn-go" href={`mailto:${email}`}>
               {email}
             </a>
-            <a className="btn" href={playStoreUrl} target="_blank" rel="noopener">
+            <a
+              className="btn"
+              href={playStoreUrl}
+              target="_blank"
+              rel="noopener"
+              onClick={() => trackSocial('googleplay')}
+            >
               All games on Google Play
             </a>
           </div>

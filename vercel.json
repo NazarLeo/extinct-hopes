@@ -1,7 +1,8 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/((?!assets/|app-ads.txt|favicon.ico).*)", "destination": "/index.html" }
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/discord", "destination": "https://discord.gg/R3XajAAurn", "statusCode": 302 }
   ],
   "headers": [
     {

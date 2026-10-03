@@ -1,28 +1,37 @@
 import { useEffect } from 'react';
+import { headTags } from '../data/seo';
 
-function setTag(selector, attr, value) {
-  if (!value) return;
-  let el = document.head.querySelector(selector);
+// The attribute that identifies a tag (<meta name>, <meta property>, <link rel>).
+const keyOf = ({ tag, attrs }) => {
+  const k = tag === 'link' ? 'rel' : attrs.name ? 'name' : 'property';
+  return [k, attrs[k]];
+};
+
+function applyTag(descriptor) {
+  const [k, v] = keyOf(descriptor);
+  let el = document.head.querySelector(`${descriptor.tag}[${k}="${v}"]`);
   if (!el) {
-    el = document.createElement('meta');
-    const [, name] = selector.match(/\[(?:name|property)="([^"]+)"\]/) || [];
-    el.setAttribute(selector.includes('property') ? 'property' : 'name', name);
+    el = document.createElement(descriptor.tag);
     document.head.appendChild(el);
   }
-  el.setAttribute(attr, value);
+  Object.entries(descriptor.attrs).forEach(([name, value]) => el.setAttribute(name, value));
 }
 
 /**
  * Keeps <title> and the social meta tags in sync with the active route.
- * The site is client-rendered, so this runs on navigation rather than
- * being baked into the HTML.
+ * The same tags are already in the HTML for every route (prerendered at
+ * build time, see scripts/vite-plugin-site.js), so this only matters when
+ * navigating between pages without a reload. `meta` comes from data/seo.js.
  */
-export default function useMeta({ title, description, ogTitle, ogDescription, ogImage }) {
+export default function useMeta(meta) {
   useEffect(() => {
-    if (title) document.title = title;
-    setTag('meta[name="description"]', 'content', description);
-    setTag('meta[property="og:title"]', 'content', ogTitle || title);
-    setTag('meta[property="og:description"]', 'content', ogDescription || description);
-    setTag('meta[property="og:image"]', 'content', ogImage);
-  }, [title, description, ogTitle, ogDescription, ogImage]);
+    document.title = meta.title;
+    headTags(meta).forEach(applyTag);
+    // Tags a previous route may have set that this one does not use.
+    if (!meta.noindex) document.head.querySelector('meta[name="robots"]')?.remove();
+    if (!meta.path) {
+      document.head.querySelector('link[rel="canonical"]')?.remove();
+      document.head.querySelector('meta[property="og:url"]')?.remove();
+    }
+  }, [meta]);
 }

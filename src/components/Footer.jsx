@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { email, playStoreUrl } from '../data/socials';
+import { trackSocial } from '../lib/analytics';
 
 export default function Footer({ links = [], showPlay = false }) {
   return (
@@ -13,7 +14,12 @@ export default function Footer({ links = [], showPlay = false }) {
         ))}
         <a href={`mailto:${email}`}>Contact</a>
         {showPlay && (
-          <a href={playStoreUrl} target="_blank" rel="noopener">
+          <a
+            href={playStoreUrl}
+            target="_blank"
+            rel="noopener"
+            onClick={() => trackSocial('googleplay')}
+          >
             Google Play ↗
           </a>
         )}

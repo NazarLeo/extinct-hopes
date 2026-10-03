@@ -1,15 +1,14 @@
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Window from '../components/Window';
+import { LINKS } from '../config/links';
 import { fanGames } from '../data/games';
+import { metaFor } from '../data/seo';
 import useMeta from '../hooks/useMeta';
+import { trackSocial } from '../lib/analytics';
 
 export default function FanGames() {
-  useMeta({
-    title: 'Fan Games',
-    description: 'Fan games and side projects by Extinct Hopes, hosted on GameJolt.',
-    ogTitle: 'Fan Games // Extinct Hopes',
-    ogDescription: 'Fan games and side projects, free on GameJolt.',
-  });
+  useMeta(metaFor('/fan-games'));
 
   return (
     <>
@@ -17,19 +16,13 @@ export default function FanGames() {
         <span className="eyebrow">Side projects</span>
         <h1 className="page-h1">Fan games</h1>
         <p className="page-lede">
-          Fan games and smaller experiments, all free on GameJolt. These are separate from
-          the Project Dream series — made for fun, mostly PC.
+          Fan games and smaller experiments, all free. These are separate from the Project
+          Dream series — made for fun, mostly PC.
         </p>
 
         <div className="fan">
           {fanGames.map((f) => (
-            <a
-              className="fan-card"
-              href={f.href}
-              key={f.href}
-              target="_blank"
-              rel="noopener"
-            >
+            <Link className="fan-card" to={f.path} key={f.slug}>
               <span className="fan-art">
                 <img loading="lazy" alt={f.title} src={f.img} />
               </span>
@@ -37,16 +30,17 @@ export default function FanGames() {
                 <b>{f.title}</b>
                 <span>{f.tag}</span>
               </span>
-            </a>
+            </Link>
           ))}
         </div>
 
         <p style={{ margin: '20px 0 0' }}>
           <a
             className="btn"
-            href="https://gamejolt.com/@leni/games"
+            href={LINKS.gamejolt}
             target="_blank"
             rel="noopener"
+            onClick={() => trackSocial('gamejolt')}
           >
             See all on GameJolt
           </a>

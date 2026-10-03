@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const full = (src) => src.replace(/=w\d+-h\d+-rw$/, '=w1920-h1080-rw');
+// Larger version of a thumbnail: Play Store art and GameJolt screenshots both
+// accept a size in the URL.
+const full = (src) =>
+  src
+    .replace(/=w\d+-h\d+-rw$/, '=w1920-h1080-rw')
+    .replace('/game-screenshot/400/', '/game-screenshot/1200/');
 
 export default function Gallery({ shots }) {
   const [idx, setIdx] = useState(null);
