@@ -20,7 +20,7 @@ export default function FanGames() {
           Dream series — made for fun, mostly PC.
         </p>
 
-        <div className="fan">
+        <div className="fan stagger">
           {fanGames.map((f) => (
             <Link className="fan-card" to={f.path} key={f.slug}>
               <span className="fan-art">

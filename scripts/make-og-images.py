@@ -25,12 +25,12 @@ OUT = Path(__file__).resolve().parent.parent / "public" / "og"
 play = lambda id: f"https://play-lh.googleusercontent.com/{id}=w1920-h1080-rw"
 jolt_thumb = lambda path: f"https://m.gjcdn.net/game-thumbnail/1500/{path}"
 
-# slug -> (source url, vertical focus 0..1; 0.5 = centre)
+# slug -> (source url or path under public/, vertical focus 0..1; 0.5 = centre)
 SOURCES = {
-    "game-lab": (play("fcBwhlXMVfTn4Av7m57rBb7MvOc6dD0xo7QlcocZz19m2_839e8x0IA7nl5iv7kReAJiFeo75uJugnA0465zx3w"), 0.5),
-    "game-escape": (play("hPn1r52WxXK3fBbeVQP5bUwSKEX9JwdMSTzaR7l3AfQolcUNHxFtV6U3qxKZb0m_2oK6N3tGxdNXW_mE5Yk42W0"), 0.5),
-    "game-cyborg": (play("Kro5KmeFwe_5V5JE4SHSyhfz1-k42C_QN2SMrmRBfjAxUVS-SG3xde3-NhvvMjpKcGnK08aIckoeSRuSUXt9Tqo"), 0.5),
-    "spamton-night": (jolt_thumb("1089431-crop278_79_941_452-yikvfftr-v4.webp"), 0.5),
+    "game-lab": (play("fFF7kbA2ImfY49_bd4SNvUQeJinX6U_9nUTUM0kLLNd0tmZR6D9kpUxC8kIvAZ9CG-z1mbltYPtmyLhWKYza"), 0.5),
+    "game-escape": (play("TTF01gbJjkczK_YVM9jKAaJSAXEuI8usJMaqZolwibhcXpHGGXDiIrScvaFa0z7XDpcpqYYoQj3mfKsum90CjQ"), 0.5),
+    "game-cyborg": (play("4_ApDwOCSxuvx7Kg9yUfd8YIys4lCm_jaRnVACXdxCVoyvkhmbPUnnWXv-qVBt7ku87ckfpNmP0yKNkamEbE_w"), 0.5),
+    "spamton-night": ("img/spamton-night.webp", 0.5),  # local file under public/
     "one-night-with-piggy": ("https://m.gjcdn.net/game-screenshot/1200/49255861-ddrbtmbg-v4.webp", 0.5),
     "fnaf-2-movie-edition": (jolt_thumb("1034245-crop133_0_1381_702-zummpfku-v4.webp"), 0.5),
     "gravity-falls-exorcism": (jolt_thumb("919820-nbd8yyxj-v4.webp"), 0.5),
@@ -41,6 +41,8 @@ SOURCES = {
 
 
 def fetch(url):
+    if not url.startswith("http"):
+        return Image.open(OUT.parent / url).convert("RGB")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return Image.open(io.BytesIO(r.read())).convert("RGB")

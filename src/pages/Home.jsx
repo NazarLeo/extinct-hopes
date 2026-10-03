@@ -156,7 +156,7 @@ export default function Home() {
           <h2>the chapters</h2>
         </div>
 
-        <div className="track">
+        <div className="track stagger">
           {games.map((g, i) => (
             <Link className="trk" to={g.path} key={g.slug}>
               <span className="trk-n">{g.number}</span>
@@ -178,7 +178,7 @@ export default function Home() {
         <div className="sec-h">
           <h2>elsewhere</h2>
         </div>
-        <div className="social">
+        <div className="social stagger">
           {socials.map((s) => (
             <SocialLink key={s.id} social={s} where="elsewhere">
               {s.name}

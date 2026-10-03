@@ -160,7 +160,7 @@ export default function About() {
           <div className="sec-h">
             <h2>find me</h2>
           </div>
-          <div className="social">
+          <div className="social stagger">
             {socials.map((s) => (
               <SocialLink key={s.id} social={s} where="about">
                 {s.name}

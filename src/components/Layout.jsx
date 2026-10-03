@@ -22,18 +22,21 @@ function ScrollManager() {
 }
 
 export default function Layout({ children }) {
+  const { pathname } = useLocation();
   // /links is the link-in-bio page: just the buttons, without the site chrome.
-  const bare = useLocation().pathname === '/links';
+  const bare = pathname === '/links';
 
   return (
     <>
-      <div className="crt" />
-      <div className="sweep" />
+      <div className="backdrop" aria-hidden="true" />
       <div className="wrap">
         <ScrollManager />
         {!bare && <SocialBar />}
         {!bare && <Tabs />}
-        {children}
+        {/* Keyed by route so every page plays its small entrance animation. */}
+        <div className="page" key={pathname}>
+          {children}
+        </div>
       </div>
     </>
   );

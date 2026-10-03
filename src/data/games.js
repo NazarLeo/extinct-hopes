@@ -91,15 +91,15 @@ export const games = [
     asideBlocks: [],
     warning:
       'Horror themes, jump scares, sustained tension, darkness and mild language. Headphones make it work — and are exactly why to think twice if you startle easily.',
+    // Play Store screenshots, in store order (the 1920x1080 set).
     shots: [
-      'fcBwhlXMVfTn4Av7m57rBb7MvOc6dD0xo7QlcocZz19m2_839e8x0IA7nl5iv7kReAJiFeo75uJugnA0465zx3w',
-      '5GIEwUeqbDo8WJkUWDeZqySJq8dt76yVyaXEFM7bMNGZng0wBMqV4STvQrmhIukbh5jfY3P-QQ_ASYavs9pJ8Q',
-      'zwagdlzTHdhgzkkJ2ZNYtljs2gR-hrYRI1kvBlpnsk74NwUSCwVGtJuQ8xw7pGdRvMqQtNTdb9TowsjuA2BIEno',
-      'W-cdHI0nlQvX2xHduyAlNuuGAChT-yChIaeqdVJTzCJwvqIm7THYkML7yavFfYOansAK91ZxZTlxLC2bw3Tp8g',
-      '6fXn97K9NGikLEF6E3LFScm_VM9Skf15ynoI4YQrG5cwecfkbcGeMG7THHiktqqEaLaCyS5OXP4NrPdaMAOd6MI',
-      'oS38p5gPVHJmZAXGnL9IiYZvSJoO_jEMmWBaQtTojjai55wxrgUhks0JpsmWMqboNoK4LDaF2J_7F9x6iYLtwVY',
-      'tzKzQ6UHdIH9kEBpgv7iiEMDIGxQBfw6jvnF2kMxFNSBGT2guygR44_7vTiGX3BZrZmTNU6hIpJAG8P4xxva6Q',
-      'wXM3DY0696lZm1IOEQ21g3Fugg7R0N-MGW9yh7aF2j6KMxAtUz43BM-6gP0tMYS0VyBvR_Lw6iAfjPq-NhU3cA',
+      'fFF7kbA2ImfY49_bd4SNvUQeJinX6U_9nUTUM0kLLNd0tmZR6D9kpUxC8kIvAZ9CG-z1mbltYPtmyLhWKYza',
+      'K35m3sDCSTnosBkPdkwcQJO1XWuR16Bb57iYL-UBNcfS04V6XNyQu1ZqiLL9wKmmwmvNnbXuyaY9Y-KBHYwkYHs',
+      'KaScHwg28A5vepQnM8a-DNbQ9lNCUYROzaeDjDOgzoHJxGHUaucs-1yMSGoYFE2OOynRuA-Lrp4cgjL4FfG3agI',
+      'mLoyK9Or3cEhAliW5w_U3PvtElpmW2MTF6n7u7e00Ob2jSbVYYiHNNdajfeTJ1Wdc56ptnBgxQNNjHVYdh41',
+      'eQ0qq0AWr-TzWmcxts_oDo01x-4mUYs1--BaUMBw7wGRjrBkBq5fYaN8gV5gI3yQBpExMoufaHVK0yuL8Y5ytuw',
+      'km1p6L1uKtd374_I06zXtUr9J2y4roGwYoYsymJrRoJloF_VAjnbXveOPMnkF_D4Y3nqqxz-4BBktEc3RL2xqA',
+      'WZ4I5YxuygjueiVNzaYXd-fslP65wKd9FwpAp8cEseP2vQ58FmcZVGqRB67Ua6AP3g-V6AeCjpbuS4WEFa3atyU',
     ].map(shot),
     prev: { to: '/', label: '← Back', title: 'All chapters' },
     next: { to: '/game-escape', label: 'Next · Chapter 1 →', title: 'Horror Escape' },
@@ -213,16 +213,16 @@ export const games = [
     ],
     warning:
       'Horror themes, jump scares and sustained tense atmosphere. Best with headphones — which is also exactly why to be careful if you startle easily.',
+    // Play Store screenshots, in store order.
     shots: [
-      'TCz9JvFm1qOn5ebUuFa2VsPBc0KmZF85FdTL9jtByExRQb4KIJmmV0KuPJikgNW__qHfA5dkaVGthZTh8_EVNVc',
-      'cH4Jkxz8AOUL1CbXKhWGrwNlVKg8w5X_oNdvoInsgCT5UzA00AKHdaw3D-QHEufahB758cjQ6cvGrdJqSPvo',
-      'hPn1r52WxXK3fBbeVQP5bUwSKEX9JwdMSTzaR7l3AfQolcUNHxFtV6U3qxKZb0m_2oK6N3tGxdNXW_mE5Yk42W0',
-      'FhmFsCsRWNShgwfW8TTTAQFEceqLVVtjUNbww3yUwh4etjWPjwqDS4eDFgGcKBDzJN9-Grv3DFH5MEB1gc8dgw',
-      'dAmuZ9HJomYbv1wCokUbqkK7_bpuwJ6ogGpTK87Lim546uKgb9vttxWNTIGG_DhHQ_QAtWfyKIT8JVQ-Af7-',
-      'QIGMGd0G9vAM1eORV4n8oXsA7zsmhK6SRU_TJ6G6aext4MkdC_N0-NVBsHBxZec2WhBjNXOKqBaXBZ3b9D4',
-      '51PJ5GTubvlVmiBZ2-Ir9RGYSQf-gfL1AMMwnuP_k87pmGkviC1hZJKgX_kmK_C2As1lMbzksC5m8gHKVmfqmw',
-      '5hNNphVvhktExHFoyOGSwQE4P5OkrR4Egs0NtviBJf79hv-o2a20ycPYwz1AB-nakmZzQa_vdAfVRX-HC8DeN6Y',
-      'VSjVmBxhrmL6W1DnuPZ_YfgmWlgV4JXBcaMo_9hRHoeX7uMXBw06yzEYaVA-BHqDX6ajnS7pwVHht37mHnY-_g',
+      'TTF01gbJjkczK_YVM9jKAaJSAXEuI8usJMaqZolwibhcXpHGGXDiIrScvaFa0z7XDpcpqYYoQj3mfKsum90CjQ',
+      '0kCwhwd_Rbac6qyZkMJ_tCXHTvO0VY2OBi15SbGZ7IMlurYDYOXMFDD1inWBJydchRiPsDiT_29Z94pGBXu2LA',
+      'KBeHs86CCDLvuygrzyNg5f3mQnhSJLse_bX7bO5w0H29FmC6FCIuYrQH9JHeK__oiCgoLLwty6Z5AhQd8I1mPw4',
+      '0xctstM_-mmQhIMtlRbOgIE99Dn3CrOcduyt0o4zX-3g6p4aqxEZ4h6x7aGNsKXqer4IotZy69kTjnUBvfYBwtc',
+      'sGLV97VoJI9yDomkq2M_hcIFHXevEtWc73R6Sq6PdE4Q7w0Xu9LwpLNB5aaligT2H3wmOP9M7tY1qp7UllSR',
+      'gBk_0nyWzNwFZue2ZENBWKgcZUVShM67fHnnABcCZH11PkE3iopjpGaJmn15sVK5jojjqLHrVzIMRhuvLS63',
+      'Ojy-rkXr4r5Kp8LEBVeVVApf1yAEM_b_Cc647GupexUZtYo9BZcZtTt2_KEkYZiCFCu9Z0cY7IBla8DCmwOZyQ',
+      'kvTUGt_nZIW8zozNeCL-ngFn-vg0IBLxojjty0Y42d-_Z1-pPLReOc2gv-h6l4LvMOkr5Snr7Lbrz3ba22BN2w',
     ].map(shot),
     prev: { to: '/game-lab', label: '← Prequel', title: 'Five Nights In Lab' },
     next: { to: '/game-cyborg', label: 'Next · Chapter 2 →', title: 'Cyborg Escape' },
@@ -280,7 +280,7 @@ export const games = [
         tag: 'File 02-B',
         prose: [
           [
-            'Whatever they built down here was not meant to keep working. It still does. It patrols the lower levels, it reacts to what it sees, and it does not tire. ',
+            'Whatever they built down here was not meant to keep working. It still does. It patrols the lower levels and it does not tire. ',
             { b: 'You cannot fight it — you can only learn how it moves.' },
           ],
         ],
@@ -335,17 +335,14 @@ export const games = [
     ],
     warning:
       'Horror themes, jump scares, blood and injury, and sustained tense atmosphere. Best with headphones — which is also the reason to be careful if you startle easily.',
+    // Play Store screenshots, in store order (the store graphic captioned "It can't hear you" is deliberately left out).
     shots: [
-      'cA2p-yEzUxwCZE4TxWjtioh-EKKQJ6yUB63NX0AKcqBhg5KCglADp23fGAl4WTUyqqDgcSPF3EGhJSxpuKGzUw',
-      'QIFo-xG6fmXmXXSa2gAGSdFpfx3v2ud8f0aaOKCYGN0EvldRbCbvYzybzw5AvQSUTqP-49JXaA-DTOI47Nikqw',
-      'Y_Xno6r9aiG8vc5LJXPGKW4YrysrQwqoIw8Vl0JIHtEZMm0t9yGQhbRD1gFAET0PdmNDZt4aTED0nsroOewOAQ',
-      'Kro5KmeFwe_5V5JE4SHSyhfz1-k42C_QN2SMrmRBfjAxUVS-SG3xde3-NhvvMjpKcGnK08aIckoeSRuSUXt9Tqo',
-      '87ukl920eFwXJ8T0PWW4wMloMDRoqpSr-IN56WRODEHXk06I-Wmvx7uKNPPqBKWUzgAvrC6a3FDadUFGxP0DQw',
-      '9ikv1qHayDoMPDObvVgrCstz0AIBcsv2oKD-ke8p9hBCJPJUaEoFRLDNHiccj5Wch2ko3oF1pQZojz-_6ULJuLQ',
-      'i7GCyHU8W2LjRy0AoQlhwHXScwIU4vmBQy4p2dXL3QRG5yyZ0sAf7MAW7hUjidkcJJ_TDusOiWx2ndrqjAR0LOE',
-      'DxUZbGC0bD3yOwHNllIkZkH5dhk0Yf5UIrYpYqt-MSXPQVJlzHVDljFbiZPtyTkn4UoN7tZtgNuB2rfk3eIK7YQ',
-      'IaDrl_2yQyDxhTU2udScKV0WW7Bt9Q5pGMYgLeWVisAcwn0HH2JX3EPEqhdTw-nHawuEDxx_x8FN0co0904BgbI',
-      'La6BTfQp139uDW8QD5_xEfbmB6arj3Zk85z4Qj7z3NL7gCZ1vY9llDqZkGoAW4Kx67tjTNMdWhvW9yojS6qEZw',
+      '4_ApDwOCSxuvx7Kg9yUfd8YIys4lCm_jaRnVACXdxCVoyvkhmbPUnnWXv-qVBt7ku87ckfpNmP0yKNkamEbE_w',
+      'PdWNZUYTSS-9JtYo5s2KLjoPnhL70UhFZomPjfVJ8Ei-cMxlkG1c03PzmAIY-ShwKj2q7v0_DFLNlUWGwhZZ',
+      'v43lNjqbQ42z_cnXytk0Kn7qIRLv-SWT7Ulck-btjgHTiwdFKKbAPmdTsHjoj2KUIyEbnOZwcWlwHrseP54a',
+      'eQJVM5_FbLptcjrSMKD5P6pJLoaGlB8WbQ8tKwcXFuT6OWgAOME5lTeUF0_yXthiL2NVEncV6UO03m5ukFhSmw',
+      '34NPx9nnWe0Q2G8e4ixup_qAEj1e3D3OA2P8sLHgA-CGUw_9idAu_XPOO8QxSVPKEQ0dg7RTwIsq6YGnaZrd',
+      'Q2gUGINMj9FRFyBfu7Od5NWy79UL2KmrmvHGcsorc0bXcMgqNlHqOEXBEnLg8eIIPcT8litVhapHMUdPSvuCog',
     ].map(shot),
     prev: { to: '/game-escape', label: '← Chapter 1', title: 'Horror Escape' },
     next: { to: '/', label: 'All chapters →', title: 'Project Dream' },
@@ -357,48 +354,36 @@ export const gameBySlug = (slug) => games.find((g) => g.slug === slug);
 // The release the bio-link page leads with.
 export const latestGame = games.find((g) => g.trackTagNew);
 
-// Home page CCTV wall — real screenshots pulled from across the three games.
+// Home page CCTV wall — store screenshots pulled from across the three games.
+// Indices point into each game's `shots`.
 export const cctv = [
-  { id: '01', src: games[0].shots[0] },
-  { id: '02', src: games[0].shots[1] },
-  { id: '03', src: games[0].shots[3], dead: true },
-  { id: '04', src: games[0].shots[5] },
-  { id: '05', src: games[1].shots[0] },
-  { id: '06', src: games[1].shots[2], dead: true },
-  { id: '07', src: games[2].shots[0] },
+  { id: '01', src: games[0].shots[1] },
+  { id: '02', src: games[0].shots[3] },
+  { id: '03', src: games[0].shots[5], dead: true },
+  { id: '04', src: games[0].shots[6] },
+  { id: '05', src: games[1].shots[7] },
+  { id: '06', src: games[1].shots[5], dead: true },
+  { id: '07', src: games[2].shots[1] },
   { id: '08', src: games[2].shots[2] },
 ];
 
 export const chapterArt = [
-  games[0].shots[2],
-  games[1].shots[0],
+  games[0].shots[0],
+  games[1].shots[2],
   games[2].shots[0],
 ];
 
-// ---------------------------------------------------------------------------
-// Fan games. Adding a game = adding one object to this array:
-//   slug      URL slug -> /fan-games/<slug> (also the og image name, /og/<slug>.jpg)
-//   title     display title
-//   pitch     one or two lines, shown on the page and in link previews
-//   thumb     GameJolt thumbnail file name (the card and the page cover)
-//   platforms shown as pills and in the dossier
-//   links     direct play buttons — only the keys that exist are rendered
-//             (googlePlay | itch | gamejolt)
-//   shots     optional GameJolt screenshot ids (…/game-screenshot/400/<id>.webp)
-//   warning   optional, defaults to fanWarning
-//   note      optional extra row in the dossier
-// The 1200x630 preview image lives in public/og/ (scripts/make-og-images.py).
 // ---------------------------------------------------------------------------
 const jolt = (kind, width, file) => `https://m.gjcdn.net/${kind}/${width}/${file}`;
 
 const fanWarning =
   'Horror themes, jump scares, loud audio and dark scenes. Headphones make it work — and are exactly why to think twice if you startle easily.';
 
-const fan = ({ thumb, shots = [], ...g }) => ({
+const fan = ({ thumb, art, shots = [], ...g }) => ({
   ...g,
   path: `/fan-games/${g.slug}`,
-  img: jolt('game-thumbnail', 500, thumb),
-  cover: jolt('game-thumbnail', 800, thumb),
+  img: art ?? jolt('game-thumbnail', 500, thumb),
+  cover: art ?? jolt('game-thumbnail', 800, thumb),
   ogImage: `/og/${g.slug}.jpg`,
   shots: shots.map((id) => jolt('game-screenshot', 400, `${id}.webp`)),
   warning: g.warning ?? fanWarning,
@@ -412,6 +397,7 @@ export const fanGames = [
       'A FNaF × Deltarune horror crossover. You are Spamton, running for your life from Friend through the dark.',
     tag: 'GameJolt · itch.io',
     thumb: '1089431-crop278_79_941_452-yikvfftr-v4.webp',
+    art: '/img/spamton-night.webp',
     platforms: ['Windows', 'Android'],
     links: {
       itch: 'https://extinct-hopes.itch.io/spamton-night',

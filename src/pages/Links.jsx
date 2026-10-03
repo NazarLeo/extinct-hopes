@@ -30,7 +30,7 @@ export default function Links() {
             </div>
           </div>
 
-          <div className="lk-list">
+          <div className="lk-list stagger">
             <Link className="lk lk-go" to={latestGame.path}>
               <span className="lk-t">
                 <b>▶ {latestGame.shortTitle}</b>
