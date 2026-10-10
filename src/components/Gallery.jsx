@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { trackGallery } from '../lib/analytics';
 
 // Larger version of a thumbnail: Play Store art and GameJolt screenshots both
 // accept a size in the URL.
@@ -7,7 +8,8 @@ const full = (src) =>
     .replace(/=w\d+-h\d+-rw$/, '=w1920-h1080-rw')
     .replace('/game-screenshot/400/', '/game-screenshot/1200/');
 
-export default function Gallery({ shots }) {
+// `game` is the slug the shots belong to, for analytics only.
+export default function Gallery({ shots, game }) {
   const [idx, setIdx] = useState(null);
   const open = idx !== null;
 
@@ -38,7 +40,14 @@ export default function Gallery({ shots }) {
     <>
       <div className="shots">
         {shots.map((src, i) => (
-          <button className="shot" key={src} onClick={() => setIdx(i)}>
+          <button
+            className="shot"
+            key={src}
+            onClick={() => {
+              setIdx(i);
+              trackGallery(game, i + 1);
+            }}
+          >
             <span className="id">{String(i + 1).padStart(2, '0')}</span>
             <img loading="lazy" alt={`Screenshot ${i + 1}`} src={src} />
           </button>

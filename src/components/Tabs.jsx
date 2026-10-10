@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { games } from '../data/games';
+import { trackNav } from '../lib/analytics';
 
 const tabs = [
   { to: '/', label: 'Home' },
@@ -32,6 +33,7 @@ export default function Tabs() {
           to={t.to}
           end={t.to === '/'}
           className={({ isActive }) => (isActive ? 'tab on' : 'tab')}
+          onClick={() => trackNav(t.to, 'tabs')}
         >
           {t.label}
         </NavLink>

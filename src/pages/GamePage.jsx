@@ -10,7 +10,7 @@ import RichText from '../components/RichText';
 import { gameBySlug } from '../data/games';
 import { metaFor } from '../data/seo';
 import useMeta from '../hooks/useMeta';
-import { trackPlay } from '../lib/analytics';
+import { trackCta, trackNav, trackPlay } from '../lib/analytics';
 
 export default function GamePage({ slug }) {
   const g = gameBySlug(slug);
@@ -46,6 +46,7 @@ export default function GamePage({ slug }) {
               <a
                 className={g.secondaryAction.variant === 'red' ? 'btn btn-red' : 'btn'}
                 href={g.secondaryAction.href}
+                onClick={() => trackCta(g.secondaryAction.href.slice(1), 'game_page')}
               >
                 {g.secondaryAction.label}
               </a>
@@ -112,16 +113,16 @@ export default function GamePage({ slug }) {
           <div className="sec-h">
             <h2>recovered footage</h2>
           </div>
-          <Gallery shots={g.shots} />
+          <Gallery shots={g.shots} game={g.slug} />
         </div>
       </Window>
 
       <nav className="chnav">
-        <Link to={g.prev.to}>
+        <Link to={g.prev.to} onClick={() => trackNav(g.prev.to, 'chapter_nav')}>
           <span>{g.prev.label}</span>
           <b>{g.prev.title}</b>
         </Link>
-        <Link to={g.next.to}>
+        <Link to={g.next.to} onClick={() => trackNav(g.next.to, 'chapter_nav')}>
           <span>{g.next.label}</span>
           <b>{g.next.title}</b>
         </Link>

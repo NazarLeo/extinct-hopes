@@ -23,7 +23,7 @@ export const games = [
     ogImage: '/og/game-lab.jpg',
     platforms: ['Android'],
     links: { googlePlay: 'https://play.google.com/store/apps/details?id=com.leni.p3808' },
-    trailer: null,
+    trailer: { id: 'jxUGYi0C9eM', poster: 'https://i.ytimg.com/vi/jxUGYi0C9eM/maxresdefault.jpg' },
     lede: [
       'You are maintenance on the night shift of a classified Soviet laboratory. Check the systems. Repair the equipment. Do your job. ',
       { b: "Test Subject #3808 is loose — and it knows you're here." },
@@ -35,7 +35,7 @@ export const games = [
       { text: 'Unreal Engine' },
       { text: 'Rated 12+', variant: 'red' },
     ],
-    secondaryAction: { label: '▤ Screenshots', href: '#shots' },
+    secondaryAction: { label: '▶ Watch trailer', href: '#trailer', variant: 'red' },
     blocks: [
       {
         title: 'The story',

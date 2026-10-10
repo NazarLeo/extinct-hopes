@@ -8,6 +8,7 @@ import Window from '../components/Window';
 import { fanGameBySlug, fanGames } from '../data/games';
 import { metaFor } from '../data/seo';
 import useMeta from '../hooks/useMeta';
+import { trackNav } from '../lib/analytics';
 
 // One page per fan game: /fan-games/<slug>. Everything comes from the game's
 // object in src/data/games.js; buttons and sections that have no data are
@@ -56,7 +57,7 @@ export default function FanGamePage({ slug }) {
           {g.shots.length > 0 && (
             <div>
               <Block title="Recovered footage" tag={`${g.shots.length} frames`}>
-                <Gallery shots={g.shots} />
+                <Gallery shots={g.shots} game={g.slug} />
               </Block>
             </div>
           )}
@@ -83,11 +84,11 @@ export default function FanGamePage({ slug }) {
       </Window>
 
       <nav className="chnav">
-        <Link to="/fan-games">
+        <Link to="/fan-games" onClick={() => trackNav('/fan-games', 'fan_nav')}>
           <span>← Back</span>
           <b>All fan games</b>
         </Link>
-        <Link to={next.path}>
+        <Link to={next.path} onClick={() => trackNav(next.path, 'fan_nav')}>
           <span>Next fan game →</span>
           <b>{next.title}</b>
         </Link>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import useScrollDepth from '../hooks/useScrollDepth';
 import SocialBar from './SocialBar';
 import Tabs from './Tabs';
 
@@ -23,6 +24,7 @@ function ScrollManager() {
 
 export default function Layout({ children }) {
   const { pathname } = useLocation();
+  useScrollDepth();
   // /links is the link-in-bio page: just the buttons, without the site chrome.
   const bare = pathname === '/links';
 

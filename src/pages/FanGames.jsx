@@ -5,7 +5,7 @@ import { LINKS } from '../config/links';
 import { fanGames } from '../data/games';
 import { metaFor } from '../data/seo';
 import useMeta from '../hooks/useMeta';
-import { trackSocial } from '../lib/analytics';
+import { trackNav, trackSocial } from '../lib/analytics';
 
 export default function FanGames() {
   useMeta(metaFor('/fan-games'));
@@ -22,7 +22,12 @@ export default function FanGames() {
 
         <div className="fan stagger">
           {fanGames.map((f) => (
-            <Link className="fan-card" to={f.path} key={f.slug}>
+            <Link
+              className="fan-card"
+              to={f.path}
+              key={f.slug}
+              onClick={() => trackNav(f.path, 'fan_index')}
+            >
               <span className="fan-art">
                 <img loading="lazy" alt={f.title} src={f.img} />
               </span>
@@ -40,7 +45,7 @@ export default function FanGames() {
             href={LINKS.gamejolt}
             target="_blank"
             rel="noopener"
-            onClick={() => trackSocial('gamejolt')}
+            onClick={() => trackSocial('gamejolt', 'fan_index')}
           >
             See all on GameJolt
           </a>

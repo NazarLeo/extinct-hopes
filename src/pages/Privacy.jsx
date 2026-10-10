@@ -15,7 +15,7 @@ export default function Privacy() {
           <span className="eyebrow">Legal</span>
           <h1>privacy policy</h1>
           <div className="stamp">
-            Last updated: 15 August 2026 · Extinct Hopes ·{' '}
+            Last updated: 10 October 2026 · Extinct Hopes ·{' '}
             <a href={`mailto:${email}`}>{email}</a>
           </div>
 
@@ -23,7 +23,7 @@ export default function Privacy() {
             This Privacy Policy applies to the mobile games published by{' '}
             <b>Extinct Hopes</b> on Google Play: <b>Five Nights In Lab: Horror PD</b>,{' '}
             <b>Horror Escape: Project Dream</b> and <b>Cyborg Escape: Project Dream 2</b>{' '}
-            (the "Games").
+            (the "Games"), and to this website.
           </p>
 
           <h2>Information we collect</h2>
@@ -63,6 +63,23 @@ export default function Privacy() {
               AdMob documentation
             </a>
             .
+          </p>
+
+          <h2>This website</h2>
+          <p>
+            This site uses <b>Vercel Web Analytics</b>, which counts page views and a few
+            anonymous interactions — which game page was opened, which trailer was played,
+            which outbound link was followed. It uses <b>no cookies</b>, does not follow
+            you across other websites, and does not record anything that identifies you.
+            Vercel's handling is described in the{' '}
+            <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">
+              Vercel Privacy Policy
+            </a>
+            .
+          </p>
+          <p>
+            Videos on this site are only loaded from YouTube after you press play, so
+            nothing is requested from YouTube until you ask for it.
           </p>
 
           <h2>Your choices</h2>

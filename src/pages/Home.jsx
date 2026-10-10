@@ -3,12 +3,13 @@ import Block from '../components/Block';
 import Footer from '../components/Footer';
 import JoinTheLab from '../components/JoinTheLab';
 import SocialLink from '../components/SocialLink';
+import Updates from '../components/Updates';
 import Window from '../components/Window';
 import { avatar, cctv, chapterArt, games } from '../data/games';
 import { metaFor } from '../data/seo';
 import { playStoreUrl, socials } from '../data/socials';
 import useMeta from '../hooks/useMeta';
-import { trackPlay } from '../lib/analytics';
+import { trackCta, trackNav, trackPlay } from '../lib/analytics';
 
 const signalLog = [
   ['01', 'power draw spike, sector B', '03:12'],
@@ -77,7 +78,11 @@ export default function Home() {
           >
             Play all three — free
           </a>
-          <Link className="btn btn-red" to="/#chapters">
+          <Link
+            className="btn btn-red"
+            to="/#chapters"
+            onClick={() => trackCta('chapters', 'home_hero')}
+          >
             Open the chapters
           </Link>
         </div>
@@ -139,7 +144,9 @@ export default function Home() {
               mostly for pc, all free on gamejolt.
               <br />
               <br />
-              <Link to="/fan-games">see the fan games →</Link>
+              <Link to="/fan-games" onClick={() => trackNav('/fan-games', 'home_about')}>
+                see the fan games →
+              </Link>
             </Block>
 
             <Block title="Before you play" tag="Posted 5:03 AM" alarm red>
@@ -150,6 +157,9 @@ export default function Home() {
         </div>
       </Window>
 
+      {/* LATEST UPDATES */}
+      <Updates />
+
       {/* CHAPTERS */}
       <section className="sec" id="chapters">
         <div className="sec-h">
@@ -158,7 +168,12 @@ export default function Home() {
 
         <div className="track stagger">
           {games.map((g, i) => (
-            <Link className="trk" to={g.path} key={g.slug}>
+            <Link
+              className="trk"
+              to={g.path}
+              key={g.slug}
+              onClick={() => trackNav(g.path, 'home_chapters')}
+            >
               <span className="trk-n">{g.number}</span>
               <span className="trk-art">
                 <img loading="lazy" alt="" src={chapterArt[i]} />

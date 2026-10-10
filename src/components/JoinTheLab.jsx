@@ -6,7 +6,7 @@ import { trackDiscord } from '../lib/analytics';
 // "Join the lab" panel for the home page, with a live "agents online" count
 // when the Discord widget is enabled. The count sits in the panel's header
 // bar, so it appearing (or never appearing) cannot move anything.
-function Panel({ source }) {
+function Panel({ where }) {
   const online = useDiscordOnline(LINKS.discordServerId);
 
   return (
@@ -30,7 +30,7 @@ function Panel({ source }) {
           href={DISCORD_PATH}
           target="_blank"
           rel="noopener"
-          onClick={() => trackDiscord(source)}
+          onClick={() => trackDiscord(where)}
         >
           Join the Discord ↗
         </a>
@@ -40,7 +40,7 @@ function Panel({ source }) {
 }
 
 // Small secondary line for game pages. Always rendered under the play buttons.
-function Line({ source, game }) {
+function Line({ where, game }) {
   return (
     <p className="lab-line">
       Found a bug or want early builds?{' '}
@@ -48,7 +48,7 @@ function Line({ source, game }) {
         href={DISCORD_PATH}
         target="_blank"
         rel="noopener"
-        onClick={() => trackDiscord(source, game)}
+        onClick={() => trackDiscord(where, game)}
       >
         → Discord
       </a>
@@ -61,13 +61,13 @@ function Line({ source, game }) {
  * LINKS.discordInvite is empty, so callers never leave a gap behind.
  *   variant="panel"  home page block
  *   variant="line"   one-line note under a game's play buttons
- * `source` / `game` are only used for analytics.
+ * `where` / `game` are only used for analytics.
  */
-export default function JoinTheLab({ variant = 'panel', source, game }) {
+export default function JoinTheLab({ variant = 'panel', where, game }) {
   if (!hasDiscord) return null;
   return variant === 'line' ? (
-    <Line source={source || 'game_page'} game={game} />
+    <Line where={where || 'game_page'} game={game} />
   ) : (
-    <Panel source={source || 'home_panel'} />
+    <Panel where={where || 'home_panel'} />
   );
 }

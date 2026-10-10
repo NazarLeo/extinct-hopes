@@ -144,7 +144,7 @@ export default function About() {
                     href={LINKS.gamejolt}
                     target="_blank"
                     rel="noopener"
-                    onClick={() => trackSocial('gamejolt')}
+                    onClick={() => trackSocial('gamejolt', 'about')}
                   >
                     GameJolt
                   </a>
@@ -178,7 +178,11 @@ export default function About() {
             model and which chapter you were playing — that is usually enough to find it.
           </p>
           <div className="contact-acts">
-            <a className="btn btn-go" href={`mailto:${email}`}>
+            <a
+              className="btn btn-go"
+              href={`mailto:${email}`}
+              onClick={() => trackSocial('email', 'about')}
+            >
               {email}
             </a>
             <a
@@ -186,7 +190,7 @@ export default function About() {
               href={playStoreUrl}
               target="_blank"
               rel="noopener"
-              onClick={() => trackSocial('googleplay')}
+              onClick={() => trackSocial('googleplay', 'about')}
             >
               All games on Google Play
             </a>

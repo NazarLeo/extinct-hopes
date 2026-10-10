@@ -6,6 +6,7 @@ import { avatar, fanGames, games, latestGame } from '../data/games';
 import { metaFor } from '../data/seo';
 import { socials } from '../data/socials';
 import useMeta from '../hooks/useMeta';
+import { trackNav } from '../lib/analytics';
 
 // Link-in-bio page: big, thumb-friendly buttons, mobile first. The social
 // entries come from data/socials.js, so the Discord button disappears with
@@ -31,7 +32,11 @@ export default function Links() {
           </div>
 
           <div className="lk-list stagger">
-            <Link className="lk lk-go" to={latestGame.path}>
+            <Link
+              className="lk lk-go"
+              to={latestGame.path}
+              onClick={() => trackNav(latestGame.path, 'links')}
+            >
               <span className="lk-t">
                 <b>▶ {latestGame.shortTitle}</b>
                 <span>Latest chapter · free on Android</span>
@@ -39,7 +44,7 @@ export default function Links() {
               <i>→</i>
             </Link>
 
-            <Link className="lk" to="/#chapters">
+            <Link className="lk" to="/#chapters" onClick={() => trackNav('/#chapters', 'links')}>
               <span className="lk-t">
                 <b>All games</b>
                 <span>

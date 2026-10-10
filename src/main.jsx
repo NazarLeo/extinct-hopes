@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { beforeSend } from './lib/analytics';
 import './styles/site.css';
 import './styles/game.css';
 import './styles/home.css';
@@ -13,6 +14,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    <Analytics />
+    <Analytics beforeSend={beforeSend} />
   </React.StrictMode>
 );
