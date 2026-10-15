@@ -8,8 +8,10 @@ const full = (src) =>
     .replace(/=w\d+-h\d+-rw$/, '=w1920-h1080-rw')
     .replace('/game-screenshot/400/', '/game-screenshot/1200/');
 
-// `game` is the slug the shots belong to, for analytics only.
-export default function Gallery({ shots, game }) {
+// `game` is the slug the shots belong to, for analytics only; `name` is the
+// game title, used in the screenshots' alt text.
+export default function Gallery({ shots, game, name }) {
+  const alt = (i) => (name ? `${name} screenshot ${i + 1}` : `Screenshot ${i + 1}`);
   const [idx, setIdx] = useState(null);
   const open = idx !== null;
 
@@ -49,7 +51,7 @@ export default function Gallery({ shots, game }) {
             }}
           >
             <span className="id">{String(i + 1).padStart(2, '0')}</span>
-            <img loading="lazy" alt={`Screenshot ${i + 1}`} src={src} />
+            <img loading="lazy" alt={alt(i)} src={src} />
           </button>
         ))}
       </div>
@@ -77,7 +79,7 @@ export default function Gallery({ shots, game }) {
           >
             ‹
           </button>
-          <img src={full(shots[idx])} alt={`Screenshot ${idx + 1}`} />
+          <img src={full(shots[idx])} alt={alt(idx)} />
           <button
             className="lb-nav lb-next"
             aria-label="Next"

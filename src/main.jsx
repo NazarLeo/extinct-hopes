@@ -9,7 +9,8 @@ import './styles/game.css';
 import './styles/home.css';
 import './styles/pages.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+const app = (
   <React.StrictMode>
     <BrowserRouter>
       <App />
@@ -17,3 +18,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Analytics beforeSend={beforeSend} />
   </React.StrictMode>
 );
+
+// Prerendered routes arrive with their markup already inside #root and are
+// hydrated; dev and 404.html start empty and are rendered from scratch.
+if (root.firstElementChild) ReactDOM.hydrateRoot(root, app);
+else ReactDOM.createRoot(root).render(app);

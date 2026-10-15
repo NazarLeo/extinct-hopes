@@ -57,7 +57,7 @@ export default function FanGamePage({ slug }) {
           {g.shots.length > 0 && (
             <div>
               <Block title="Recovered footage" tag={`${g.shots.length} frames`}>
-                <Gallery shots={g.shots} game={g.slug} />
+                <Gallery shots={g.shots} game={g.slug} name={g.title} />
               </Block>
             </div>
           )}

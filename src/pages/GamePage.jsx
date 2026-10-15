@@ -113,7 +113,7 @@ export default function GamePage({ slug }) {
           <div className="sec-h">
             <h2>recovered footage</h2>
           </div>
-          <Gallery shots={g.shots} game={g.slug} />
+          <Gallery shots={g.shots} game={g.slug} name={g.title} />
         </div>
       </Window>
 

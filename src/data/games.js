@@ -13,9 +13,10 @@ export const games = [
     eyebrowRed: false,
     trackLine: 'Prequel — the lab is still running — Subject #3808',
     trackTag: 'Open',
-    metaTitle: 'Five Nights In Lab',
+    metaTitle: 'Five Nights In Lab: Horror PD — Free Android Horror Game',
     metaDescription:
-      'Five Nights In Lab: Horror PD — free-roam first-person horror in a Soviet laboratory. Prequel to Project Dream. Free on Android.',
+      'Five Nights In Lab: Horror PD is a free first-person horror game for Android. Work the night shift in a Soviet laboratory while Test Subject #3808 is loose. Prequel to Project Dream.',
+    genre: ['Horror', 'Survival horror'],
     ogTitle: 'Five Nights In Lab: Horror PD',
     pitch:
       'Night shift in a classified Soviet laboratory. Test Subject #3808 is loose.',
@@ -117,9 +118,10 @@ export const games = [
     eyebrowRed: false,
     trackLine: 'Chapter 1 — abandoned — the hybrid adapts to your route',
     trackTag: 'Open',
-    metaTitle: 'Horror Escape',
+    metaTitle: 'Horror Escape: Project Dream — Free Android Horror Game',
     metaDescription:
-      'Horror Escape: Project Dream — first-person horror escape with full voice acting and an enemy that hunts you through the facility. Chapter 1. Free on Android.',
+      'Horror Escape: Project Dream is a free first-person escape horror game for Android with full voice acting. Find a way out of an abandoned facility while a hybrid hunts you. Chapter 1.',
+    genre: ['Horror', 'Escape'],
     ogTitle: 'Horror Escape: Project Dream',
     pitch:
       'Your father told stories about monsters in an abandoned facility. The floor gave way.',
@@ -241,9 +243,10 @@ export const games = [
     trackLine: 'Chapter 2 — lower levels — you are bleeding',
     trackTag: 'Latest',
     trackTagNew: true,
-    metaTitle: 'Cyborg Escape',
+    metaTitle: 'Cyborg Escape: Project Dream 2 — Free Android Horror Game',
     metaDescription:
-      'Cyborg Escape: Project Dream 2 — wounded, underground, and hunted by something they rebuilt. Chapter 2. Free on Android.',
+      'Cyborg Escape: Project Dream 2 is a free first-person escape horror game for Android. Wounded and underground, you are hunted by a rotten cyborg. Chapter 2 of the series.',
+    genre: ['Horror', 'Escape'],
     ogTitle: 'Cyborg Escape: Project Dream 2',
     pitch:
       'You survived the first laboratory. It wounded you on the way out, and you are still underground.',

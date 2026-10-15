@@ -4,6 +4,11 @@
 // Canonical origin, used for absolute og:url / og:image URLs.
 export const SITE_URL = 'https://extinct-hopes.vercel.app';
 
+// Google Search Console "HTML tag" verification: paste only the content="…"
+// value here. Left empty, no verification tag is rendered.
+export const GOOGLE_SITE_VERIFICATION = '';
+export const BING_SITE_VERIFICATION = '';
+
 export const LINKS = {
   // Set to "" to hide every Discord block, button and counter on the site.
   // vercel.json holds the same URL for the /discord redirect — the build
@@ -13,6 +18,7 @@ export const LINKS = {
   youtube: 'https://www.youtube.com/@ExtinctHopes',
   tiktok: 'https://www.tiktok.com/@extinct_hopes',
   x: 'https://x.com/extinct_hopes',
+  itch: 'https://extinct-hopes.itch.io',
   gamejolt: 'https://gamejolt.com/@leni/games',
   googlePlay: 'https://play.google.com/store/apps/dev?id=8760570199713578008',
   email: 'mailto:leni49823@gmail.com',
