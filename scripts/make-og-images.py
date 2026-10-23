@@ -7,6 +7,7 @@ Run it by hand when you add a game or want to swap its preview art:
     pip install pillow
     python3 scripts/make-og-images.py            # rebuild everything
     python3 scripts/make-og-images.py spamton-night   # rebuild one slug
+    python3 scripts/make-og-images.py site            # the site-wide default
 
 Each entry is a source image URL; it is cover-cropped (centre) to 1200x630.
 The output file name is the game's slug, which is what src/data/games.js
@@ -20,7 +21,13 @@ from pathlib import Path
 from PIL import Image
 
 W, H = 1200, 630
-OUT = Path(__file__).resolve().parent.parent / "public" / "og"
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "public" / "og"
+
+# Site-wide default preview (og/site.jpg): the three subjects, kept in the repo
+# as the original. The focus keeps the top of the frame (hair) and trims the
+# bottom, where there is only darkness.
+SITE_SOURCE = (ROOT / "assets-src" / "og" / "site.jpg", 0.3)
 
 play = lambda id: f"https://play-lh.googleusercontent.com/{id}=w1920-h1080-rw"
 jolt_thumb = lambda path: f"https://m.gjcdn.net/game-thumbnail/1500/{path}"
@@ -65,22 +72,14 @@ def save(im, name):
 
 
 def main(only):
-    covers = {}
     for slug, (url, focus) in SOURCES.items():
-        if only and slug not in only and "site" not in only:
+        if only and slug not in only:
             continue
-        covers[slug] = cover(fetch(url), focus)
-        if not only or slug in only:
-            save(covers[slug], slug)
+        save(cover(fetch(url), focus), slug)
 
-    # Site-wide default: the three chapters side by side.
     if not only or "site" in only:
-        strips = [covers[s] for s in ("game-lab", "game-escape", "game-cyborg")]
-        sheet = Image.new("RGB", (W, H))
-        for i, im in enumerate(strips):
-            x0 = i * (W // 3)
-            sheet.paste(im.crop((W // 2 - W // 6, 0, W // 2 + W // 6, H)), (x0, 0))
-        save(sheet, "site")
+        path, focus = SITE_SOURCE
+        save(cover(Image.open(path).convert("RGB"), focus), "site")
 
 
 if __name__ == "__main__":

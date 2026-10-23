@@ -18,7 +18,8 @@ export const SITE_NAME = 'Extinct Hopes';
 const TWITTER_HANDLE = '@extinct_hopes';
 
 // 1200x630 preview art for pages that are not a game (public/og/site.jpg).
-const DEFAULT_IMAGE = '/og/site.jpg';
+// Bump `v` when the picture changes: Telegram, Discord and X cache previews by URL.
+const DEFAULT_IMAGE = '/og/site.jpg?v=2';
 export const OG_SIZE = { width: 1200, height: 630 };
 
 export const absoluteUrl = (path) => (/^https?:\/\//.test(path) ? path : `${SITE_URL}${path}`);
