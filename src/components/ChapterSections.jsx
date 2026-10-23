@@ -6,11 +6,13 @@ import { trackNav, trackPlay } from '../lib/analytics';
 
 // Background art lives in public/sections: `<key>-1600|2560.webp` for wide
 // screens and `<key>-m.webp`, a portrait crop, for phones. `side` is the
-// half of the frame that is dark enough to carry the copy.
+// half of the frame that is dark enough to carry the copy; the character
+// (public/hero, the same cut-outs as the hero) stands on the other half.
+// `ar` is the cut-out's aspect ratio, `mw` its width on a phone.
 const art = {
-  'game-lab': { key: 'lab', side: 'left' },
-  'game-escape': { key: 'escape', side: 'right' },
-  'game-cyborg': { key: 'cyborg', side: 'left' },
+  'game-lab': { key: 'lab', side: 'left', char: { id: '3808', ar: 2564 / 2092, mw: '112vw' } },
+  'game-escape': { key: 'escape', side: 'right', char: { id: 'donkey', ar: 2285 / 2087, mw: '104vw' } },
+  'game-cyborg': { key: 'cyborg', side: 'left', char: { id: 'cyborg', ar: 1635 / 2080, mw: '74vw' } },
 };
 
 const fanBlurb =
@@ -33,6 +35,23 @@ function Bg({ name }) {
           />
         </picture>
       </div>
+    </div>
+  );
+}
+
+// The wrapper takes the parallax, the image the reveal.
+function Character({ id, ar, mw }) {
+  const src = (size) => `/hero/${id}-${size}.webp`;
+  return (
+    <div className="pg-char" aria-hidden="true" style={{ '--ar': ar, '--mw': mw }}>
+      <img
+        alt=""
+        loading="lazy"
+        decoding="async"
+        sizes="(max-width: 720px) 100vw, 50vw"
+        srcSet={`${src(700)} 700w, ${src(1400)} 1400w`}
+        src={src(1400)}
+      />
     </div>
   );
 }
@@ -63,7 +82,7 @@ function Copy({ id, eyebrow, red, title, children }) {
 }
 
 function Chapter({ game }) {
-  const { key, side } = art[game.slug];
+  const { key, side, char } = art[game.slug];
   const id = `pg-${game.slug}`;
 
   return (
@@ -73,6 +92,7 @@ function Chapter({ game }) {
       <span className="pg-num" aria-hidden="true">
         {game.number}
       </span>
+      <Character {...char} />
       <Copy id={id} eyebrow={game.eyebrow} red={game.eyebrowRed} title={game.shortTitle}>
         <p className="pg-p pg-rv" style={{ '--d': '1s' }}>
           {game.pitch}

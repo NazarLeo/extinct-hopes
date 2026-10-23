@@ -2,7 +2,7 @@
    Home sections — one full-screen scene per chapter, then fan games
 
    Layers: .pg-bg (clips = the reveal) > .pg-bgp (parallax) > img, then a
-   shade, an outlined number, and the copy. Height is explicit so the section
+   shade, an outlined number, a character and the copy. Height is explicit so the section
    can be a size container: `cqh` below is a percentage of the section itself.
 
    The hidden start state only exists under `.armed:not(.in)`, which
@@ -41,7 +41,7 @@
 .pg-right{--dir:270deg}
 .pg-center{--dir:0deg}
 
-/* ---- outlined chapter number, on the side opposite the copy ---- */
+/* ---- outlined chapter number, above the copy ---- */
 .pg-num{
   position:absolute;z-index:2;top:12cqh;
   font-size:clamp(150px,26vw,380px);line-height:.8;
@@ -49,8 +49,27 @@
   font-variant-numeric:tabular-nums;user-select:none;pointer-events:none;
   transform:translate3d(0,calc(var(--p,0) * -14cqh),0);
 }
-.pg-left .pg-num{right:max(16px,calc(50% - 530px))}
-.pg-right .pg-num{left:max(16px,calc(50% - 530px))}
+.pg-left .pg-num{left:max(16px,calc(50% - 530px))}
+.pg-right .pg-num{right:max(16px,calc(50% - 530px))}
+
+/* ---- character: stands on the lit half, bleeds off the bottom edge ----
+   It moves against the background (the background lags the scroll, the
+   character runs ahead of it), which is what gives the depth. */
+.pg-char{
+  position:absolute;z-index:2;bottom:-4cqh;
+  height:70cqh;aspect-ratio:var(--ar);
+  transform:translate3d(0,calc(var(--p,0) * 9cqh),0);
+  pointer-events:none;
+}
+.pg-left .pg-char{right:max(-4vw,calc(50% - 700px));--from:70px}
+.pg-right .pg-char{left:max(-4vw,calc(50% - 700px));--from:-70px}
+.pg-char img{
+  width:100%;height:100%;
+  filter:brightness(.9);
+  /* the busts end in a hard crop: fade them out instead of showing the edge */
+  -webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 97%);
+  mask-image:linear-gradient(180deg,#000 58%,transparent 97%);
+}
 
 /* ---- copy ---- */
 .pg-copy{
@@ -86,16 +105,19 @@
 }
 .pg-ext:hover{color:#fff;border-color:#fff}
 
-/* ---- fan games: shorter scene, nothing cropped at the sides ---- */
+/* ---- fan games: the wide art sits on top and is never cropped at the sides;
+   the copy lives in the dark under it ---- */
 .pg-fan{
   --bleed:6cqh;
-  height:clamp(560px,52vw,880px);min-height:0;max-height:none;
+  height:clamp(680px,70vw,1020px);min-height:0;max-height:none;
 }
+.pg-fan .pg-bg{bottom:auto;height:74%}
 .pg-fan .pg-shade{
   background:
-    linear-gradient(180deg,var(--void) 0,transparent 16%),
-    linear-gradient(0deg,var(--void) 0,rgba(6,6,7,.82) 30%,transparent 62%);
+    linear-gradient(180deg,var(--void) 0,transparent 14%),
+    linear-gradient(0deg,var(--void) 0,var(--void) 30%,transparent 52%);
 }
+.pg-fan .pg-copy{bottom:clamp(40px,7cqh,72px)}
 
 /* ============ REVEAL ============ */
 
@@ -119,6 +141,15 @@
   transition:opacity .8s var(--ease) var(--d,0s),transform .8s var(--ease) var(--d,0s);
 }
 
+/* the character steps out of the dark once the room has opened: it slides in
+   from its own edge, settles back from a slight zoom and brightens */
+.pg.armed:not(.in) .pg-char img{
+  opacity:0;transform:translate3d(var(--from),0,0) scale(1.06);filter:brightness(.15);
+}
+.pg.in .pg-char img{
+  transition:opacity 1.2s var(--ease) .7s,transform 1.9s var(--ease) .7s,filter 1.6s var(--ease) .7s;
+}
+
 /* fan games: a beam of light opens up in the dark instead of the door */
 @property --beam{syntax:'<percentage>';inherits:false;initial-value:150%}
 .pg-fan .pg-bg{
@@ -127,23 +158,38 @@
   mask-image:radial-gradient(circle at 50% 46%,#000 calc(var(--beam) - 38%),transparent var(--beam));
 }
 .pg-fan.armed:not(.in) .pg-bg{--beam:0%}
-.pg-fan.in .pg-bg{transition:--beam 2s var(--ease)}
+.pg-fan.in .pg-bg{transition:--beam 2.4s cubic-bezier(.4,0,.2,1)}
 .pg-fan.armed:not(.in) .pg-bgp img{transform:scale(1.14);filter:brightness(.35) saturate(.9)}
 .pg-fan.in .pg-bgp img{transition:transform 2.6s var(--ease),filter 2s var(--ease)}
 
 /* ============ PHONE ============
    Portrait crops, copy sitting at the bottom on a vertical shade. */
 @media(max-width:720px){
-  .pg-shade,.pg-fan .pg-shade{
+  .pg-shade{
     background:
       linear-gradient(180deg,var(--void) 0,transparent 16%),
       linear-gradient(0deg,var(--void) 0,rgba(6,6,7,.9) 36%,transparent 72%);
   }
+  .pg-fan .pg-shade{
+    background:
+      linear-gradient(180deg,var(--void) 0,transparent 10%),
+      linear-gradient(0deg,var(--void) 0,var(--void) 300px,transparent calc(300px + 30vw));
+  }
   .pg .pg-copy{left:16px;right:16px;width:auto;bottom:36px;margin:0}
   .pg .pg-num{left:auto;right:6px;top:10cqh;font-size:46vw}
+  /* on a phone the character fills the space above the copy, off to one side */
+  .pg .pg-char{
+    left:auto;right:-14vw;bottom:clamp(250px,36cqh,330px);
+    width:var(--mw);height:auto;
+  }
+  .pg-right .pg-char{right:auto;left:-14vw}
   .pg-title{font-size:clamp(34px,11vw,48px)}
   .pg-p{font-size:14px}
-  .pg-fan{height:100vh;height:100svh;min-height:600px}
+  /* the portrait art keeps its own proportions (9:16); the copy sits under it
+     instead of covering the faces in its lower half */
+  .pg-fan{height:calc(177.8vw + 310px);min-height:0}
+  .pg-fan .pg-bg{height:177.8vw}
+  .pg-fan .pg-copy{bottom:36px}
   .pg-center .pg-copy{text-align:left}
   .pg-center .pg-p{margin-left:0}
   .pg-center .pg-acts{justify-content:flex-start}
