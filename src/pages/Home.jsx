@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import Block from '../components/Block';
 import Footer from '../components/Footer';
+import Hero from '../components/Hero';
 import JoinTheLab from '../components/JoinTheLab';
 import SocialLink from '../components/SocialLink';
 import Updates from '../components/Updates';
 import Window from '../components/Window';
-import { avatar, cctv, chapterArt, games } from '../data/games';
+import { cctv, chapterArt, games } from '../data/games';
 import { metaFor } from '../data/seo';
-import { playStoreUrl, socials } from '../data/socials';
+import { socials } from '../data/socials';
 import useMeta from '../hooks/useMeta';
-import { trackCta, trackNav, trackPlay } from '../lib/analytics';
+import { trackNav } from '../lib/analytics';
 
 const signalLog = [
   ['01', 'power draw spike, sector B', '03:12'],
@@ -31,27 +32,19 @@ export default function Home() {
 
   return (
     <>
+      <Hero />
+
       <Window path="C:\project_dream\index">
         {/* PROFILE */}
         <div className="prof">
-          <div className="avatar">
-            <img alt="Extinct Hopes" src={avatar} />
-          </div>
-
-          <div className="title">
-            <h1>
-              extinct hopes<span className="x">_</span>
-            </h1>
-            <div className="tagline">Solo horror game developer</div>
-            <ul className="meta">
-              {facts.map(([k, v, live]) => (
-                <li key={k}>
-                  <span>{k}:</span>
-                  <b className={live ? 'live' : undefined}>{v}</b>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="meta">
+            {facts.map(([k, v, live]) => (
+              <li key={k}>
+                <span>{k}:</span>
+                <b className={live ? 'live' : undefined}>{v}</b>
+              </li>
+            ))}
+          </ul>
 
           <div className="links">
             <h3>follow me...</h3>
@@ -65,26 +58,6 @@ export default function Home() {
               ))}
             </ol>
           </div>
-        </div>
-
-        {/* ACTIONS */}
-        <div className="acts">
-          <a
-            className="btn btn-go"
-            href={playStoreUrl}
-            target="_blank"
-            rel="noopener"
-            onClick={() => trackPlay('all', 'google_play')}
-          >
-            Play all three — free
-          </a>
-          <Link
-            className="btn btn-red"
-            to="/#chapters"
-            onClick={() => trackCta('chapters', 'home_hero')}
-          >
-            Open the chapters
-          </Link>
         </div>
 
         {/* TWO COLUMNS */}

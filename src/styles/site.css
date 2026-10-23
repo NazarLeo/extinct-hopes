@@ -283,6 +283,8 @@ h1,h2,h3,h4{
     animation-duration:.001ms!important;animation-iteration-count:1!important;
     transition-duration:.001ms!important;scroll-behavior:auto!important;
   }
+  /* the home intro is delay-driven: drop the delays too, or it stays blank */
+  .intro-a{animation-delay:0s!important}
 }
 
 /* ============ RESPONSIVE ============ */
