@@ -32,17 +32,22 @@ export function Bg({ name }) {
 }
 
 // The wrapper takes the parallax, the image the reveal.
-export function Character({ id, ar, mw }) {
-  const src = (size) => `/hero/${id}-${size}.webp`;
+export function Character({ id, ar, mw, dir = 'hero', widths = [700, 1400], logo }) {
+  const src = (w) => `/${dir}/${id}-${w}.webp`;
+  const [small, large] = widths;
   return (
-    <div className="pg-char" aria-hidden="true" style={{ '--ar': ar, '--mw': mw }}>
+    <div
+      className={logo ? 'pg-char pg-logo' : 'pg-char'}
+      aria-hidden="true"
+      style={{ '--ar': ar, '--mw': mw }}
+    >
       <img
         alt=""
         loading="lazy"
         decoding="async"
         sizes="(max-width: 720px) 100vw, 50vw"
-        srcSet={`${src(700)} 700w, ${src(1400)} 1400w`}
-        src={src(1400)}
+        srcSet={`${src(small)} ${small}w, ${src(large)} ${large}w`}
+        src={src(large)}
       />
     </div>
   );

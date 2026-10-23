@@ -47,7 +47,7 @@ export default function About() {
   return (
     <>
       <PageHero
-        scene={{ bg: 'fog', side: 'left', char: cutouts['3808'] }}
+        scene={{ bg: 'fog', side: 'left', char: cutouts.logo }}
         id="pg-about"
         eyebrow="Who makes this"
         title="extinct hopes"

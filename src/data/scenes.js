@@ -7,6 +7,9 @@ export const cutouts = {
   '3808': { id: '3808', ar: 2564 / 2092, mw: '112vw' },
   donkey: { id: 'donkey', ar: 2285 / 2087, mw: '104vw' },
   cyborg: { id: 'cyborg', ar: 1635 / 2080, mw: '74vw' },
+  // The brand mark (public/brand), not a bust: it floats clear of the edges
+  // instead of bleeding off the bottom (`logo`), and has its own two widths.
+  logo: { id: 'logo', dir: 'brand', widths: [500, 940], ar: 940 / 1258, mw: '66vw', logo: true },
 };
 
 export const scenes = {
