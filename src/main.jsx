@@ -7,6 +7,7 @@ import { beforeSend } from './lib/analytics';
 import './styles/site.css';
 import './styles/game.css';
 import './styles/home.css';
+import './styles/sections.css';
 import './styles/pages.css';
 
 const root = document.getElementById('root');

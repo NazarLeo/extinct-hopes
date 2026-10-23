@@ -1,5 +1,6 @@
 /* ============================================================
-   Home page — profile header, CCTV wall, signal log, chapters
+   Home page — hero, shared avatar/title, latest-updates feed
+   (the chapter scenes live in sections.css)
    ============================================================ */
 
 /* ---- hero: the first screen, an intro that plays once ----
@@ -93,7 +94,6 @@ html[data-intro] .intro-a,.seen .intro-a,.intro-a.seen{
   text-transform:uppercase;color:var(--ink-3);
 }
 .hero-acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.hero + .win{margin-top:28px}
 /* short landscape windows: the copy block must not climb into the faces */
 @media(min-width:721px) and (max-height:760px){
   .hero-icon{display:none}
@@ -102,9 +102,7 @@ html[data-intro] .intro-a,.seen .intro-a,.intro-a.seen{
   .hc-donkey,.hc-cyborg{height:47%;bottom:21%}
 }
 
-/* ---- profile header ---- */
-.prof{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-
+/* ---- avatar / title / tagline: shared with About and Links ---- */
 .avatar{
   border:1px solid var(--edge-live);border-radius:14px;overflow:hidden;
   position:relative;background:#000;aspect-ratio:1/1;
@@ -121,78 +119,6 @@ html[data-intro] .intro-a,.seen .intro-a,.intro-a.seen{
   font-size:12px;letter-spacing:.19em;text-transform:uppercase;
   color:var(--ink-4);margin-bottom:17px;
 }
-
-.links h3{
-  font-size:18px;color:#fff;letter-spacing:.05em;
-  margin-bottom:10px;text-transform:lowercase;
-}
-.links ol{list-style:none;margin:0;padding:0;counter-reset:l}
-.links li{counter-increment:l;margin-bottom:6px}
-.links a{
-  display:flex;align-items:center;gap:9px;
-  border:1px solid var(--edge-hot);border-radius:var(--r);
-  padding:8px 10px;background:rgba(255,255,255,.025);font-size:12px;
-  color:var(--ink-2);
-  transition:background .25s var(--ease),border-color .25s var(--ease),
-    color .25s var(--ease),transform .25s var(--ease);
-}
-.links a::before{
-  content:counter(l,decimal-leading-zero);
-  border-right:1px solid var(--edge-hot);padding-right:9px;
-  color:var(--ink-4);font-size:10.5px;
-}
-.links svg{width:14px;height:14px;flex-shrink:0;fill:currentColor}
-.links a:hover{
-  background:rgba(255,255,255,.07);border-color:var(--edge-hover);
-  color:#fff;transform:translateX(3px);
-}
-
-/* ---- two columns ---- */
-.cols{display:grid;grid-template-columns:1fr 1.02fr;gap:14px;align-items:start;margin-top:20px}
-
-/* ---- CCTV wall: real screenshots, full colour ---- */
-.cctv{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
-  border:1px solid var(--edge-hot);border-radius:var(--r);
-  padding:4px;background:#000;
-}
-.cam{
-  position:relative;aspect-ratio:4/3;overflow:hidden;
-  background:#000;border-radius:3px;
-}
-.cam img{
-  width:100%;height:100%;object-fit:cover;filter:brightness(.78);
-  transition:filter .4s var(--ease),transform .6s var(--ease);
-}
-.cam .id{
-  position:absolute;top:3px;left:5px;z-index:2;
-  font-size:8px;letter-spacing:.09em;color:#fff;
-  text-shadow:0 1px 3px rgba(0,0,0,.9);
-}
-.cam:hover img{filter:brightness(1.05);transform:scale(1.06)}
-/* an "offline" camera is simply dimmed and desaturated — it does not flicker */
-.cam.dead img{filter:brightness(.4) grayscale(1)}
-.cam.dead:hover img{filter:brightness(.7) grayscale(.5)}
-.cctv-cap{
-  display:flex;justify-content:space-between;
-  font-size:10.5px;letter-spacing:.13em;color:var(--ink-4);
-  margin-top:9px;text-transform:uppercase;
-}
-
-/* ---- signal log ---- */
-.log{width:100%;border-collapse:collapse;font-size:13px;margin-top:13px}
-.log th{
-  text-align:left;font-weight:400;font-size:10.5px;letter-spacing:.13em;
-  color:var(--ink-4);text-transform:uppercase;
-  border-bottom:1px solid var(--edge-hot);padding:8px 9px;
-}
-.log td{padding:9px;border-bottom:1px solid var(--edge);color:var(--ink-2)}
-.log tr:last-child td{border-bottom:none}
-.log .n{color:var(--ink-4);width:26px}
-.log .tm{color:var(--ink-4);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-.log tr{transition:background .2s var(--ease)}
-.log tr:hover td{background:rgba(255,255,255,.03)}
-.log .alarm td{color:var(--blood)}
 
 /* ---- latest updates: newest thing featured, older ones logged below ---- */
 .sec-link{
@@ -245,49 +171,8 @@ a.upd:hover .upd-t{transform:translateX(4px)}
 }
 a.upd:hover .upd-go{color:#fff}
 
-/* ---- chapter track list ---- */
-.track{border:1px solid var(--edge-hot);border-radius:var(--r);overflow:hidden}
-.trk{
-  display:grid;grid-template-columns:50px 116px 1fr auto;
-  gap:14px;align-items:center;
-  padding:13px 14px;border-bottom:1px solid var(--edge);
-  transition:background .3s var(--ease);color:var(--ink-2);
-}
-.trk:last-child{border-bottom:none}
-.trk:hover{background:rgba(255,255,255,.035)}
-.trk-n{
-  font-size:21px;color:var(--ink-4);font-variant-numeric:tabular-nums;
-  transition:color .3s var(--ease);
-}
-.trk:hover .trk-n{color:#fff}
-.trk-art{
-  aspect-ratio:16/10;overflow:hidden;border:1px solid var(--edge-hot);
-  border-radius:3px;background:#000;
-}
-.trk-art img{
-  width:100%;height:100%;object-fit:cover;filter:brightness(.85);
-  transition:filter .4s var(--ease),transform .6s var(--ease);
-}
-.trk:hover .trk-art img{filter:brightness(1.05);transform:scale(1.06)}
-.trk-t{transition:transform .35s var(--ease)}
-.trk:hover .trk-t{transform:translateX(4px)}
-.trk-t b{
-  display:block;font-size:15px;color:var(--ink);font-weight:400;
-  letter-spacing:.02em;margin-bottom:3px;
-}
-.trk:hover .trk-t b{color:#fff}
-.trk-t span{font-size:12px;color:var(--ink-4);letter-spacing:.06em}
-.trk-go{
-  font-size:10.5px;letter-spacing:.13em;color:var(--ink-4);
-  text-transform:uppercase;white-space:nowrap;transition:color .3s var(--ease);
-}
-.trk:hover .trk-go{color:#fff}
-.trk-go.new{color:var(--blood)}
-
 @media(max-width:860px){
-  .prof{grid-template-columns:1fr}
   .avatar{max-width:190px}
-  .cols{grid-template-columns:1fr}
   .upd-new{grid-template-columns:1fr}
 }
 /* phone: a different composition rather than a scaled-down desktop one — 3808
@@ -304,9 +189,6 @@ a.upd:hover .upd-go{color:#fff}
   .hero-acts .btn{flex:1 1 100%}
 }
 @media(max-width:600px){
-  .cctv{grid-template-columns:repeat(3,1fr)}
-  .trk{grid-template-columns:36px 1fr;gap:11px;padding:12px}
-  .trk-art,.trk-go{display:none}
   .upd{grid-template-columns:1fr auto;gap:4px 11px;padding:12px}
   .upd-t{grid-column:1/-1;order:2}
   .upd-kind{order:1;justify-self:end;padding:3px 8px}

@@ -1,0 +1,153 @@
+/* ============================================================
+   Home sections — one full-screen scene per chapter, then fan games
+
+   Layers: .pg-bg (clips = the reveal) > .pg-bgp (parallax) > img, then a
+   shade, an outlined number, and the copy. Height is explicit so the section
+   can be a size container: `cqh` below is a percentage of the section itself.
+
+   The hidden start state only exists under `.armed:not(.in)`, which
+   useSectionMotion adds — with no JS or reduced motion everything is simply
+   visible. Transitions are declared under `.in` so arming never animates.
+   ============================================================ */
+
+.pgs{width:100vw;margin-left:calc(50% - 50vw)}
+
+.pg{
+  --bleed:14cqh;
+  position:relative;overflow:hidden;isolation:isolate;
+  height:100vh;height:100svh;min-height:600px;max-height:1000px;
+  container-type:size;background:var(--void);
+}
+
+/* ---- background: parallax inside, reveal outside ---- */
+.pg-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.pg-bgp{
+  position:absolute;left:0;right:0;top:calc(var(--bleed) * -1);bottom:calc(var(--bleed) * -1);
+  transform:translate3d(0,calc(var(--p,0) * var(--bleed) * -.85),0);
+}
+.pg-bgp img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;filter:brightness(.82) saturate(.92);
+}
+
+/* dark at the seams so neighbouring scenes melt into the page, and dark on
+   the copy side so the text always has ground to stand on */
+.pg-shade{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,var(--void) 0,transparent 22%,transparent 76%,var(--void) 100%),
+    linear-gradient(var(--dir,90deg),rgba(6,6,7,.9) 0,rgba(6,6,7,.6) 34%,transparent 72%);
+}
+.pg-right{--dir:270deg}
+.pg-center{--dir:0deg}
+
+/* ---- outlined chapter number, on the side opposite the copy ---- */
+.pg-num{
+  position:absolute;z-index:2;top:12cqh;
+  font-size:clamp(150px,26vw,380px);line-height:.8;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);
+  font-variant-numeric:tabular-nums;user-select:none;pointer-events:none;
+  transform:translate3d(0,calc(var(--p,0) * -14cqh),0);
+}
+.pg-left .pg-num{right:max(16px,calc(50% - 530px))}
+.pg-right .pg-num{left:max(16px,calc(50% - 530px))}
+
+/* ---- copy ---- */
+.pg-copy{
+  position:absolute;z-index:3;bottom:clamp(40px,12cqh,120px);
+  width:min(560px,calc(100% - 32px));
+  transform:translate3d(0,calc(var(--p,0) * -3cqh),0);
+}
+.pg-left .pg-copy{left:max(16px,calc(50% - 530px))}
+.pg-right .pg-copy{right:max(16px,calc(50% - 530px))}
+.pg-center .pg-copy{left:0;right:0;margin:0 auto;text-align:center}
+
+.pg-title{
+  font-size:clamp(38px,6vw,76px);color:#fff;text-transform:lowercase;
+  letter-spacing:.02em;line-height:1.02;margin:0 0 16px;
+}
+.pg-title .w{
+  display:inline-block;overflow:hidden;vertical-align:top;
+  padding-bottom:.14em;margin-bottom:-.14em;   /* keeps descenders inside the clip */
+}
+.pg-title .w>span{display:inline-block}
+
+.pg-p{
+  max-width:46ch;margin:0 0 24px;
+  font-size:15px;line-height:1.7;color:var(--ink-2);
+}
+.pg-center .pg-p{margin-left:auto;margin-right:auto}
+.pg-acts{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.pg-center .pg-acts{justify-content:center}
+.pg-ext{
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  padding-bottom:3px;border-bottom:1px solid var(--edge-hot);
+  transition:color .25s var(--ease),border-color .25s var(--ease);
+}
+.pg-ext:hover{color:#fff;border-color:#fff}
+
+/* ---- fan games: shorter scene, nothing cropped at the sides ---- */
+.pg-fan{
+  --bleed:6cqh;
+  height:clamp(560px,52vw,880px);min-height:0;max-height:none;
+}
+.pg-fan .pg-shade{
+  background:
+    linear-gradient(180deg,var(--void) 0,transparent 16%),
+    linear-gradient(0deg,var(--void) 0,rgba(6,6,7,.82) 30%,transparent 62%);
+}
+
+/* ============ REVEAL ============ */
+
+/* the scene opens like a door: a slit at the middle widens to the full frame,
+   while the picture settles back from a slow zoom */
+.pg.armed:not(.in) .pg-bg{clip-path:inset(48% 0 48% 0)}
+.pg.armed:not(.in) .pg-bgp img{transform:scale(1.2)}
+.pg.in .pg-bg{clip-path:inset(0);transition:clip-path 1.3s var(--ease)}
+.pg.in .pg-bgp img{transition:transform 2.2s var(--ease)}
+
+.pg.armed:not(.in) .pg-num{opacity:0}
+.pg.in .pg-num{transition:opacity 1.4s var(--ease) .5s}
+
+.pg.armed:not(.in) .pg-title .w>span{transform:translateY(112%)}
+.pg.in .pg-title .w>span{
+  transition:transform .95s var(--ease) calc(.6s + var(--i) * .08s);
+}
+
+.pg.armed:not(.in) .pg-rv{opacity:0;transform:translateY(14px)}
+.pg.in .pg-rv{
+  transition:opacity .8s var(--ease) var(--d,0s),transform .8s var(--ease) var(--d,0s);
+}
+
+/* fan games: a beam of light opens up in the dark instead of the door */
+@property --beam{syntax:'<percentage>';inherits:false;initial-value:150%}
+.pg-fan .pg-bg{
+  clip-path:none;
+  -webkit-mask-image:radial-gradient(circle at 50% 46%,#000 calc(var(--beam) - 38%),transparent var(--beam));
+  mask-image:radial-gradient(circle at 50% 46%,#000 calc(var(--beam) - 38%),transparent var(--beam));
+}
+.pg-fan.armed:not(.in) .pg-bg{--beam:0%}
+.pg-fan.in .pg-bg{transition:--beam 2s var(--ease)}
+.pg-fan.armed:not(.in) .pg-bgp img{transform:scale(1.14);filter:brightness(.35) saturate(.9)}
+.pg-fan.in .pg-bgp img{transition:transform 2.6s var(--ease),filter 2s var(--ease)}
+
+/* ============ PHONE ============
+   Portrait crops, copy sitting at the bottom on a vertical shade. */
+@media(max-width:720px){
+  .pg-shade,.pg-fan .pg-shade{
+    background:
+      linear-gradient(180deg,var(--void) 0,transparent 16%),
+      linear-gradient(0deg,var(--void) 0,rgba(6,6,7,.9) 36%,transparent 72%);
+  }
+  .pg .pg-copy{left:16px;right:16px;width:auto;bottom:36px;margin:0}
+  .pg .pg-num{left:auto;right:6px;top:10cqh;font-size:46vw}
+  .pg-title{font-size:clamp(34px,11vw,48px)}
+  .pg-p{font-size:14px}
+  .pg-fan{height:100vh;height:100svh;min-height:600px}
+  .pg-center .pg-copy{text-align:left}
+  .pg-center .pg-p{margin-left:0}
+  .pg-center .pg-acts{justify-content:flex-start}
+}
+
+/* ============ TAIL ============ */
+.home-tail{margin-top:34px}

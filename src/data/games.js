@@ -357,25 +357,6 @@ export const gameBySlug = (slug) => games.find((g) => g.slug === slug);
 // The release the bio-link page leads with.
 export const latestGame = games.find((g) => g.trackTagNew);
 
-// Home page CCTV wall — store screenshots pulled from across the three games.
-// Indices point into each game's `shots`.
-export const cctv = [
-  { id: '01', src: games[0].shots[1] },
-  { id: '02', src: games[0].shots[3] },
-  { id: '03', src: games[0].shots[5], dead: true },
-  { id: '04', src: games[0].shots[6] },
-  { id: '05', src: games[1].shots[7] },
-  { id: '06', src: games[1].shots[5], dead: true },
-  { id: '07', src: games[2].shots[1] },
-  { id: '08', src: games[2].shots[2] },
-];
-
-export const chapterArt = [
-  games[0].shots[0],
-  games[1].shots[2],
-  games[2].shots[0],
-];
-
 // ---------------------------------------------------------------------------
 const jolt = (kind, width, file) => `https://m.gjcdn.net/${kind}/${width}/${file}`;
 
