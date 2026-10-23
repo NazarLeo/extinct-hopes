@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import PageHero from '../components/PageHero';
 import Window from '../components/Window';
 import { metaFor } from '../data/seo';
 import { email } from '../data/socials';
@@ -10,15 +11,21 @@ export default function Privacy() {
 
   return (
     <>
+      <PageHero
+        scene={{ bg: 'fog', side: 'left' }}
+        className="pg-short"
+        id="pg-privacy"
+        eyebrow="Legal"
+        title="privacy policy"
+      >
+        <div className="stamp pg-rv" style={{ '--d': '1s' }}>
+          Last updated: 10 October 2026 · Extinct Hopes ·{' '}
+          <a href={`mailto:${email}`}>{email}</a>
+        </div>
+      </PageHero>
+
       <Window path="C:\project_dream\privacy_policy.txt">
         <div className="doc">
-          <span className="eyebrow">Legal</span>
-          <h1>privacy policy</h1>
-          <div className="stamp">
-            Last updated: 10 October 2026 · Extinct Hopes ·{' '}
-            <a href={`mailto:${email}`}>{email}</a>
-          </div>
-
           <p>
             This Privacy Policy applies to the mobile games published by{' '}
             <b>Extinct Hopes</b> on Google Play: <b>Five Nights In Lab: Horror PD</b>,{' '}

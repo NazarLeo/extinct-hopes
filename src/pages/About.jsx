@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import Block from '../components/Block';
 import Footer from '../components/Footer';
+import PageHero from '../components/PageHero';
 import Window from '../components/Window';
 import SocialLink from '../components/SocialLink';
 import { LINKS } from '../config/links';
-import { avatar } from '../data/games';
+import { cutouts } from '../data/scenes';
 import { metaFor } from '../data/seo';
 import { email, playStoreUrl, socials } from '../data/socials';
 import useMeta from '../hooks/useMeta';
 import { trackSocial } from '../lib/analytics';
+import { playUrl } from '../lib/playLink';
 
 const rules = [
   <>
@@ -16,8 +18,8 @@ const rules = [
     can it.
   </>,
   <>
-    <b>The enemy hunts.</b> It patrols on its own schedule and learns your route. Hiding
-    works only if you got there before it did.
+    <b>The enemy hunts.</b> It patrols the facility, and one wrong turn is enough. Hiding
+    works only if you reach the spot before it sees you.
   </>,
   <>
     <b>The place tells the story.</b> Notes, recordings and the state of the rooms carry
@@ -44,32 +46,28 @@ export default function About() {
 
   return (
     <>
-      <Window path="C:\project_dream\about">
-        {/* HEADER */}
-        <div className="a-head">
-          <div className="g-icon">
-            <img alt="Extinct Hopes" src={avatar} />
-          </div>
-          <div>
-            <span className="eyebrow">Who makes this</span>
-            <h1>extinct hopes</h1>
-            <p className="g-lede">
-              I'm a solo developer. Three games in the Project Dream series so far — same
-              Soviet-era facility, free-roam first person, built in Unreal Engine for
-              Android. On the side I make <Link to="/fan-games">fan games</Link> — seven of
-              them on GameJolt, mostly for PC. <b>All free, no paywall.</b>
-            </p>
-            <div className="pills">
-              <span className="pill on">Solo developer</span>
-              <span className="pill">3 games + 7 fan games</span>
-              <span className="pill">Unreal Engine</span>
-              <span className="pill">Android</span>
-            </div>
-          </div>
+      <PageHero
+        scene={{ bg: 'fog', side: 'left', char: cutouts['3808'] }}
+        id="pg-about"
+        eyebrow="Who makes this"
+        title="extinct hopes"
+      >
+        <p className="pg-p pg-rv" style={{ '--d': '1s' }}>
+          I'm a solo developer. Three games in the Project Dream series so far — same
+          Soviet-era facility, free-roam first person, built in Unreal Engine for Android.
+          On the side I make <Link to="/fan-games">fan games</Link> — seven of them on
+          GameJolt, mostly for PC. <b>All free, no paywall.</b>
+        </p>
+        <div className="pills pg-rv" style={{ '--d': '1.1s' }}>
+          <span className="pill on">Solo developer</span>
+          <span className="pill">3 games + 7 fan games</span>
+          <span className="pill">Unreal Engine</span>
+          <span className="pill">Android</span>
         </div>
+      </PageHero>
 
-        {/* COLUMNS */}
-        <div className="g-cols" style={{ marginTop: 20 }}>
+      <Window path="C:\project_dream\about">
+        <div className="g-cols">
           <div>
             <Block
               title="What I make"
@@ -80,8 +78,8 @@ export default function About() {
                 ],
                 [
                   'The rule across every chapter is the same: ',
-                  { b: 'no fixed camera views and no scares on a timer.' },
-                  ' You walk the corridors yourself, and the thing down there moves on its own schedule. If it catches you, it is because it learned your route — not because a script was waiting for you to reach a trigger.',
+                  { b: 'you walk the corridors yourself, and no scare waits on a timer.' },
+                  ' The thing down there patrols the facility. If it catches you, it is because you took one wrong turn — not because a script was waiting for you to reach a trigger.',
                 ],
               ]}
             />
@@ -130,7 +128,7 @@ export default function About() {
                 <p style={{ marginBottom: 0 }}>
                   <b>02</b> — <Link to="/game-cyborg">Cyborg Escape</Link>
                   <br />
-                  Deeper levels. Something they rebuilt never stopped working.
+                  Deeper levels. Something down here never stopped working.
                 </p>
               </div>
             </Block>
@@ -187,7 +185,7 @@ export default function About() {
             </a>
             <a
               className="btn"
-              href={playStoreUrl}
+              href={playUrl(playStoreUrl, 'about')}
               target="_blank"
               rel="noopener"
               onClick={() => trackSocial('googleplay', 'about')}

@@ -28,17 +28,19 @@ export default function Layout({ children }) {
   useScrollDepth();
   // /links is the link-in-bio page: just the buttons, without the site chrome.
   const bare = pathname === '/links';
-  // On the home page the nav floats over the hero and fades in last.
+  // Every page opens with a full-screen scene, and the nav floats over it. On
+  // the home page the nav also fades in last, after the intro.
   const home = pathname === '/';
 
   return (
     <>
-      {!home && <div className="backdrop" aria-hidden="true" />}
-      <div className={home ? 'wrap wrap-home' : 'wrap'}>
+      <div className="wrap wrap-scene">
         <ScrollManager />
         {!bare && (
           <div
-            className={home ? (introSeen() ? 'chrome-over intro-a seen' : 'chrome-over intro-a') : undefined}
+            className={
+              home ? (introSeen() ? 'chrome-over intro-a seen' : 'chrome-over intro-a') : 'chrome-over'
+            }
             style={home ? { '--at': '3.9s' } : undefined}
           >
             <SocialBar />

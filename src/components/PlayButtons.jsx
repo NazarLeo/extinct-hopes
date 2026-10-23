@@ -1,4 +1,5 @@
 import { trackPlay } from '../lib/analytics';
+import { playUrl } from '../lib/playLink';
 
 // Store buttons in display order; the first one a game has gets the primary style.
 const STORES = [
@@ -14,7 +15,7 @@ export default function PlayButtons({ game }) {
     <a
       key={s.key}
       className={i === 0 ? 'btn btn-go' : 'btn'}
-      href={game.links[s.key]}
+      href={s.key === 'googlePlay' ? playUrl(game.links[s.key], 'game_page', game.slug) : game.links[s.key]}
       target="_blank"
       rel="noopener"
       onClick={() => trackPlay(game.slug, s.platform)}

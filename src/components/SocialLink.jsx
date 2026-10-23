@@ -1,4 +1,5 @@
 import { trackSocialLink } from '../lib/analytics';
+import { playUrl } from '../lib/playLink';
 
 /**
  * One social profile as a link: icon + whatever children the caller passes.
@@ -11,7 +12,7 @@ export default function SocialLink({ social: s, where, title, className, childre
   return (
     <a
       className={className}
-      href={s.href}
+      href={s.id === 'googleplay' ? playUrl(s.href, `social_${where}`) : s.href}
       title={title}
       target={mail ? undefined : '_blank'}
       rel={mail ? undefined : 'noopener'}

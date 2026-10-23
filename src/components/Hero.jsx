@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { playStoreUrl } from '../data/socials';
 import { trackCta, trackPlay } from '../lib/analytics';
 import { introSeen, markIntroSeen } from '../lib/intro';
+import { playUrl } from '../lib/playLink';
 
 // Cropped to the character's outline by the export script; the aspect ratio
 // of each file is what the CSS sizes the layer from.
@@ -106,7 +107,7 @@ export default function Hero() {
         <div className="hero-acts intro-a" style={{ '--at': '3.85s' }}>
           <a
             className="btn btn-go"
-            href={playStoreUrl}
+            href={playUrl(playStoreUrl, 'home_hero')}
             target="_blank"
             rel="noopener"
             onClick={() => trackPlay('all', 'google_play')}

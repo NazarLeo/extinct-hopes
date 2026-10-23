@@ -15,19 +15,18 @@ export const games = [
     trackTag: 'Open',
     metaTitle: 'Five Nights In Lab: Horror PD — Free Android Horror Game',
     metaDescription:
-      'Five Nights In Lab: Horror PD is a free first-person horror game for Android. Work the night shift in a Soviet laboratory while Test Subject #3808 is loose. Prequel to Project Dream.',
+      'Five Nights In Lab: Horror PD is a free first-person horror survival game for Android. Work the night shift in a Soviet laboratory, fix the systems and survive until morning while Test Subject #3808 is loose. Prequel to Project Dream.',
     genre: ['Horror', 'Survival horror'],
     ogTitle: 'Five Nights In Lab: Horror PD',
-    pitch:
-      'Night shift in a classified Soviet laboratory. Test Subject #3808 is loose.',
+    pitch: "Night shift in a Soviet lab. Fix the systems. Don't let Subject #3808 find you.",
     icon: 'https://play-lh.googleusercontent.com/s0eQAyTKC7emeO_eevo0mijRh8jbLkshvG28wYxAg5roF1x0fqUUrBbN48fhg4u8e69oyVjIyIxl8lFdV9jz9pQ=w240',
     ogImage: '/og/game-lab.jpg',
     platforms: ['Android'],
     links: { googlePlay: 'https://play.google.com/store/apps/details?id=com.leni.p3808' },
     trailer: { id: 'jxUGYi0C9eM', poster: 'https://i.ytimg.com/vi/jxUGYi0C9eM/maxresdefault.jpg' },
     lede: [
-      'You are maintenance on the night shift of a classified Soviet laboratory. Check the systems. Repair the equipment. Do your job. ',
-      { b: "Test Subject #3808 is loose — and it knows you're here." },
+      'You are a maintenance worker at a classified Soviet laboratory. Your job: keep the lower levels running through the night shift. Check the systems. Repair the equipment. Survive until morning. ',
+      { b: 'But Test Subject #3808 is loose — and it is looking for you.' },
     ],
     pills: [
       { text: 'Free', variant: 'on' },
@@ -43,7 +42,7 @@ export const games = [
         tag: 'File 00-A',
         prose: [
           [
-            'The year is unknown. Somewhere beneath a Soviet-era facility, classified experiments are underway. You signed up for the night shift because the pay was good. Nobody told you what they were keeping in the lower levels.',
+            "Somewhere beneath a Soviet-era facility, classified experiments are underway. You took the night shift because the pay was good. Nobody told you what they were keeping in the lower levels. Now it's too late to quit.",
           ],
           [
             'This is the prequel to ',
@@ -51,19 +50,26 @@ export const games = [
             ' — the same laboratory, years before Chapter 1, with ',
             { b: 'a different protagonist:' },
             ' a maintenance worker, not the person who falls through the floor in Chapters 1 and 2. ',
-            { b: 'The monsters were not always abandoned. They were contained.' },
+            { b: 'The monsters were not always free. They were contained.' },
             ' Until tonight.',
           ],
         ],
       },
       {
-        title: 'Not a camera game',
+        title: 'How you survive',
         tag: 'File 00-B',
         prose: [
           [
-            "Inspired by Five Nights at Freddy's, but with full free movement. There are no fixed camera views to sit behind — you are physically in the lab, walking its corridors and managing systems while something hunts you in the dark. ",
-            { b: 'Think FNAF meets Alien: Isolation, on mobile.' },
+            'Five Nights In Lab is a first-person horror survival game set in the Project Dream universe. You are not stuck in one chair: walk the corridors, watch the cameras, shut the doors and keep the lab alive until your shift ends.',
           ],
+        ],
+        features: [
+          'Track Subject #3808 on the security cameras.',
+          'Close the doors before it gets in.',
+          'Search for batteries before every night — power runs out.',
+          "Repair every system on the main computer — the night won't end until the job is done.",
+          'It hunts by sight. Stay out of its view.',
+          'Find the secret VHS tapes and unlock the secret ending.',
         ],
       },
       {
@@ -73,7 +79,7 @@ export const games = [
           'Free-roam gameplay — walk, explore, hide. Not just cameras.',
           'Test Subject #3808: enemy AI that hunts you through the facility.',
           'Repair mechanics — fix systems under pressure while it closes in.',
-          'Soviet laboratory setting with its own dark atmosphere.',
+          'A dark Soviet laboratory atmosphere, built for mobile.',
           'Built on Unreal Engine, optimized for mobile hardware.',
           'Multiple language support.',
         ],
@@ -116,15 +122,14 @@ export const games = [
     shortTitle: 'Horror Escape',
     eyebrow: 'Chapter 01 · Start here',
     eyebrowRed: false,
-    trackLine: 'Chapter 1 — abandoned — the hybrid adapts to your route',
+    trackLine: 'Chapter 1 — abandoned — the hybrid is loose',
     trackTag: 'Open',
     metaTitle: 'Horror Escape: Project Dream — Free Android Horror Game',
     metaDescription:
-      'Horror Escape: Project Dream is a free first-person escape horror game for Android with full voice acting. Find a way out of an abandoned facility while a hybrid hunts you. Chapter 1.',
+      'Horror Escape: Project Dream is a free first-person escape horror game for Android with full voice acting. Trapped in an abandoned lab, find the way out while a hybrid hunts the halls. Chapter 1.',
     genre: ['Horror', 'Escape'],
     ogTitle: 'Horror Escape: Project Dream',
-    pitch:
-      'Your father told stories about monsters in an abandoned facility. The floor gave way.',
+    pitch: 'Trapped in an abandoned lab. A hybrid hunts the halls. Find the way out.',
     icon: 'https://play-lh.googleusercontent.com/xDXte1POPv7HprynzGEsUZnsoBZfDC8S4gRYO49bEhBLLmerje5Gz9V1WarzqdQe5Pf2NJLitKf58brkJdof=w240',
     ogImage: '/og/game-escape.jpg',
     platforms: ['Android'],
@@ -158,8 +163,8 @@ export const games = [
         tag: 'File 01-B',
         prose: [
           [
-            'It is not a scripted jump scare on a timer. It moves through the facility on its own schedule, and it adapts to where you keep going. ',
-            { b: 'Hiding works — but only if you picked the spot before it got there.' },
+            'It is not a scripted jump scare on a timer. It patrols the facility, and one wrong turn is enough. ',
+            { b: 'Hiding works — but only if you reach the spot before it sees you.' },
           ],
         ],
       },
@@ -177,11 +182,21 @@ export const games = [
         tag: 'File 01-D',
         features: [
           'First-person horror exploration with free movement.',
-          'Hybrid enemy that patrols freely and adapts to your route.',
+          'A hybrid enemy that patrols the halls: stay out of its sight.',
           'Puzzles, locked doors and secrets across the facility.',
           'Full voice acting with subtitles.',
           'Graphics settings for low-end and mid-range phones.',
-          'Rebuilt menu and interface.',
+          'Atmospheric lighting and detailed sound, best with headphones.',
+          'Chapter 1 of Project Dream, continues in Cyborg Escape: Project Dream 2.',
+        ],
+      },
+      {
+        title: 'Made for mobile',
+        tag: 'File 01-E',
+        prose: [
+          [
+            'Runs on phones with limited memory. Choose a lower graphics preset on older devices for smoother performance.',
+          ],
         ],
       },
     ],
@@ -245,11 +260,10 @@ export const games = [
     trackTagNew: true,
     metaTitle: 'Cyborg Escape: Project Dream 2 — Free Android Horror Game',
     metaDescription:
-      'Cyborg Escape: Project Dream 2 is a free first-person escape horror game for Android. Wounded and underground, you are hunted by a rotten cyborg. Chapter 2 of the series.',
+      'Cyborg Escape: Project Dream 2 is a free first-person escape horror game for Android. Wounded and trapped underground, find medicine, solve the facility and get out alive while a rotten cyborg patrols the lower levels. Chapter 2.',
     genre: ['Horror', 'Escape'],
     ogTitle: 'Cyborg Escape: Project Dream 2',
-    pitch:
-      'You survived the first laboratory. It wounded you on the way out, and you are still underground.',
+    pitch: 'Wounded and trapped underground. Find medicine, solve the lab, get out alive.',
     icon: 'https://play-lh.googleusercontent.com/QKwkYaEl_2E9Uecb5wyGJgVywhDTp1tgQSWd7YTqGPR3W7z-_Tx2cVJ-ZlVcMlcXnU0LUVcRlMTqNMwFtdXp=w240',
     ogImage: '/og/game-cyborg.jpg',
     platforms: ['Android'],
@@ -257,7 +271,8 @@ export const games = [
     trailer: { id: '146Dj7s4AvY', poster: 'https://i.ytimg.com/vi/146Dj7s4AvY/hqdefault.jpg' },
     lede: [
       'You survived the first laboratory. It did not survive you. ',
-      { b: 'But it wounded you on the way out — and you are still underground.' },
+      { b: 'But it wounded you on the way out, and you are still underground.' },
+      ' Deeper levels, a new hunter, and a body that is running out of time.',
     ],
     pills: [
       { text: 'Free', variant: 'on' },
@@ -283,8 +298,8 @@ export const games = [
         tag: 'File 02-B',
         prose: [
           [
-            'Whatever they built down here was not meant to keep working. It still does. It patrols the lower levels and it does not tire. ',
-            { b: 'You cannot fight it — you can only learn how it moves.' },
+            'Whatever they built down here was not meant to keep working. It still does. It patrols the lower levels, it does not stop, and it does not tire. ',
+            { b: 'You cannot fight it. You can only learn how it moves.' },
           ],
         ],
       },
@@ -306,7 +321,9 @@ export const games = [
           'Injury mechanic that puts a clock on your escape.',
           'Puzzles, keypads and locked sections built into the environment.',
           'Expanded facility with new rooms and new threats.',
+          'Atmospheric lighting and detailed sound, best with headphones.',
           'Graphics presets for low-end and mid-range phones.',
+          'Direct continuation of Chapter 1, playable on its own.',
         ],
       },
     ],

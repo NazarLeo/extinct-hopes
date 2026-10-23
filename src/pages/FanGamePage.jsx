@@ -3,6 +3,7 @@ import Block from '../components/Block';
 import Footer from '../components/Footer';
 import Gallery from '../components/Gallery';
 import JoinTheLab from '../components/JoinTheLab';
+import PageHero from '../components/PageHero';
 import PlayButtons from '../components/PlayButtons';
 import Window from '../components/Window';
 import { fanGameBySlug, fanGames } from '../data/games';
@@ -27,33 +28,37 @@ export default function FanGamePage({ slug }) {
 
   return (
     <>
-      <Window path={`C:\\project_dream\\fan_games\\${slug.replace(/-/g, '_')}`}>
-        {/* HEADER */}
-        <div className="fg-head">
-          <div className="fg-cover">
+      <PageHero
+        scene={{ bg: 'fan', side: 'left' }}
+        className="pg-dim"
+        id={`pg-${g.slug}`}
+        eyebrow="Fan game"
+        title={g.title}
+        poster={
+          <div className="pg-poster">
             <img alt={`${g.title} cover`} src={g.cover} />
           </div>
-          <div>
-            <span className="eyebrow">Fan game</span>
-            <h1>{g.title}</h1>
-            <p className="g-lede">{g.pitch}</p>
-            <div className="pills">
-              <span className="pill on">Free</span>
-              {g.platforms.map((p) => (
-                <span className="pill" key={p}>
-                  {p}
-                </span>
-              ))}
-            </div>
-            <div className="g-acts">
-              <PlayButtons game={g} />
-            </div>
-            <JoinTheLab variant="line" game={g.slug} />
-          </div>
+        }
+      >
+        <p className="pg-p pg-rv" style={{ '--d': '1s' }}>
+          {g.pitch}
+        </p>
+        <div className="pills pg-rv" style={{ '--d': '1.1s' }}>
+          <span className="pill on">Free</span>
+          {g.platforms.map((p) => (
+            <span className="pill" key={p}>
+              {p}
+            </span>
+          ))}
         </div>
+        <div className="pg-acts pg-rv" style={{ '--d': '1.2s' }}>
+          <PlayButtons game={g} />
+        </div>
+        <JoinTheLab variant="line" game={g.slug} />
+      </PageHero>
 
-        {/* COLUMNS */}
-        <div className={g.shots.length ? 'g-cols' : undefined} style={{ marginTop: 18 }}>
+      <Window path={`C:\\project_dream\\fan_games\\${slug.replace(/-/g, '_')}`}>
+        <div className={g.shots.length ? 'g-cols' : undefined}>
           {g.shots.length > 0 && (
             <div>
               <Block title="Recovered footage" tag={`${g.shots.length} frames`}>

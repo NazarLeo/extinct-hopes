@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
-import Window from '../components/Window';
+import PageHero from '../components/PageHero';
+import { cutouts } from '../data/scenes';
 import { notFoundMeta } from '../data/seo';
 import useMeta from '../hooks/useMeta';
 import { trackNav, trackNotFound } from '../lib/analytics';
@@ -26,16 +27,21 @@ export default function NotFound() {
 
   return (
     <>
-      <Window path="C:\project_dream\error_404">
-        <span className="eyebrow red">Error 404</span>
-        <h1 className="page-h1">signal lost</h1>
-        <p className="page-lede">
+      <PageHero
+        scene={{ bg: 'fog', side: 'left', char: cutouts.cyborg }}
+        id="pg-404"
+        eyebrow="Error 404"
+        red
+        title="signal lost"
+        number="404"
+      >
+        <p className="pg-p pg-rv" style={{ '--d': '1s' }}>
           There is no camera feed at this address. The page was moved, or it was never here.
         </p>
-        <p className="err-path">
+        <p className="err-path pg-rv" style={{ '--d': '1.1s' }}>
           <span>requested:</span> {pathname}
         </p>
-        <div className="g-acts">
+        <div className="pg-acts pg-rv" style={{ '--d': '1.2s' }}>
           <Link className="btn btn-go" to="/" onClick={() => trackNav('/', 'not_found')}>
             Back to the facility
           </Link>
@@ -47,7 +53,7 @@ export default function NotFound() {
             Fan games
           </Link>
         </div>
-      </Window>
+      </PageHero>
 
       <Footer
         links={[

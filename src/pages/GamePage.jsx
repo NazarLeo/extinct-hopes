@@ -3,13 +3,16 @@ import Block from '../components/Block';
 import Footer from '../components/Footer';
 import Gallery from '../components/Gallery';
 import JoinTheLab from '../components/JoinTheLab';
+import PageHero from '../components/PageHero';
 import PlayButtons from '../components/PlayButtons';
 import Trailer from '../components/Trailer';
 import Window from '../components/Window';
 import RichText from '../components/RichText';
 import { gameBySlug } from '../data/games';
+import { scenes } from '../data/scenes';
 import { metaFor } from '../data/seo';
 import useMeta from '../hooks/useMeta';
+import { playUrl } from '../lib/playLink';
 import { trackCta, trackNav, trackPlay } from '../lib/analytics';
 
 export default function GamePage({ slug }) {
@@ -19,42 +22,37 @@ export default function GamePage({ slug }) {
 
   return (
     <>
-      <Window path={g.winPath}>
-        {/* HEADER */}
-        <div className="g-head">
-          <div className="g-icon">
-            <img alt={`${g.shortTitle} icon`} src={g.icon} />
-          </div>
-          <div>
-            <span className={g.eyebrowRed ? 'eyebrow red' : 'eyebrow'}>{g.eyebrow}</span>
-            <h1>{g.title}</h1>
-            <p className="g-lede">
-              <RichText parts={g.lede} />
-            </p>
-            <div className="pills">
-              {g.pills.map((p) => (
-                <span
-                  className={p.variant ? `pill ${p.variant}` : 'pill'}
-                  key={p.text}
-                >
-                  {p.text}
-                </span>
-              ))}
-            </div>
-            <div className="g-acts">
-              <PlayButtons game={g} />
-              <a
-                className={g.secondaryAction.variant === 'red' ? 'btn btn-red' : 'btn'}
-                href={g.secondaryAction.href}
-                onClick={() => trackCta(g.secondaryAction.href.slice(1), 'game_page')}
-              >
-                {g.secondaryAction.label}
-              </a>
-            </div>
-            <JoinTheLab variant="line" game={g.slug} />
-          </div>
+      <PageHero
+        scene={scenes[g.slug]}
+        id={`pg-${g.slug}`}
+        eyebrow={g.eyebrow}
+        red={g.eyebrowRed}
+        title={g.title}
+      >
+        <p className="pg-p pg-rv" style={{ '--d': '1s' }}>
+          <RichText parts={g.lede} />
+        </p>
+        <div className="pills pg-rv" style={{ '--d': '1.1s' }}>
+          {g.pills.map((p) => (
+            <span className={p.variant ? `pill ${p.variant}` : 'pill'} key={p.text}>
+              {p.text}
+            </span>
+          ))}
         </div>
+        <div className="pg-acts pg-rv" style={{ '--d': '1.2s' }}>
+          <PlayButtons game={g} />
+          <a
+            className={g.secondaryAction.variant === 'red' ? 'btn btn-red' : 'btn'}
+            href={g.secondaryAction.href}
+            onClick={() => trackCta(g.secondaryAction.href.slice(1), 'game_page')}
+          >
+            {g.secondaryAction.label}
+          </a>
+        </div>
+        <JoinTheLab variant="line" game={g.slug} />
+      </PageHero>
 
+      <Window path={g.winPath}>
         {g.trailer && (
           <Trailer id={g.trailer.id} poster={g.trailer.poster} title={g.shortTitle} />
         )}
@@ -98,7 +96,7 @@ export default function GamePage({ slug }) {
             <a
               className="btn btn-go"
               style={{ width: '100%' }}
-              href={g.links.googlePlay}
+              href={playUrl(g.links.googlePlay, 'game_page_sidebar', g.slug)}
               target="_blank"
               rel="noopener"
               onClick={() => trackPlay(g.slug, 'google_play')}

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import PageHero from '../components/PageHero';
 import Window from '../components/Window';
 import { LINKS } from '../config/links';
 import { fanGames } from '../data/games';
@@ -12,14 +13,20 @@ export default function FanGames() {
 
   return (
     <>
-      <Window path="C:\project_dream\fan_games">
-        <span className="eyebrow">Side projects</span>
-        <h1 className="page-h1">Fan games</h1>
-        <p className="page-lede">
+      <PageHero
+        scene={{ bg: 'fan', side: 'left' }}
+        className="pg-short pg-dim"
+        id="pg-fan-index"
+        eyebrow="Side projects"
+        title="Fan games"
+      >
+        <p className="pg-p pg-rv" style={{ '--d': '1s' }}>
           Fan games and smaller experiments, all free. These are separate from the Project
           Dream series — made for fun, mostly PC.
         </p>
+      </PageHero>
 
+      <Window path="C:\project_dream\fan_games">
         <div className="fan stagger">
           {fanGames.map((f) => (
             <Link
