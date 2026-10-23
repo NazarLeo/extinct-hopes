@@ -1,5 +1,5 @@
 /* ============================================================
-   Home page — hero, shared avatar/title, latest-updates feed
+   Home page — hero and the latest-updates feed
    (the chapter scenes live in sections.css)
    ============================================================ */
 
@@ -102,24 +102,6 @@ html[data-intro] .intro-a,.seen .intro-a,.intro-a.seen{
   .hc-donkey,.hc-cyborg{height:47%;bottom:21%}
 }
 
-/* ---- avatar / title / tagline: shared with About and Links ---- */
-.avatar{
-  border:1px solid var(--edge-live);border-radius:14px;overflow:hidden;
-  position:relative;background:#000;aspect-ratio:1/1;
-}
-.avatar img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.avatar:hover img{transform:scale(1.04)}
-
-.title h1{
-  font-size:clamp(32px,6vw,50px);color:#fff;
-  letter-spacing:.03em;margin-bottom:5px;text-transform:lowercase;
-}
-.title h1 .x{color:var(--blood)}
-.tagline{
-  font-size:12px;letter-spacing:.19em;text-transform:uppercase;
-  color:var(--ink-4);margin-bottom:17px;
-}
-
 /* ---- latest updates: newest thing featured, older ones logged below ---- */
 .sec-link{
   order:1;flex-shrink:0;
@@ -172,7 +154,6 @@ a.upd:hover .upd-t{transform:translateX(4px)}
 a.upd:hover .upd-go{color:#fff}
 
 @media(max-width:860px){
-  .avatar{max-width:190px}
   .upd-new{grid-template-columns:1fr}
 }
 /* phone: a different composition rather than a scaled-down desktop one — 3808

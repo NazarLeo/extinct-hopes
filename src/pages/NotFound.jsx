@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
@@ -12,6 +12,11 @@ import { trackNav, trackNotFound } from '../lib/analytics';
 export default function NotFound() {
   const { pathname } = useLocation();
   useMeta(notFoundMeta);
+
+  // dist/404.html is prerendered without knowing which address was asked for,
+  // so the path is shown only after mount: the first client render then matches it.
+  const [shown, setShown] = useState('');
+  useEffect(() => setShown(pathname), [pathname]);
 
   // Which address was asked for, and which site sent them — that pair is
   // what tells you whether an old link is still out there somewhere.
@@ -39,7 +44,7 @@ export default function NotFound() {
           There is no camera feed at this address. The page was moved, or it was never here.
         </p>
         <p className="err-path pg-rv" style={{ '--d': '1.1s' }}>
-          <span>requested:</span> {pathname}
+          <span>requested:</span> {shown}
         </p>
         <div className="pg-acts pg-rv" style={{ '--d': '1.2s' }}>
           <Link className="btn btn-go" to="/" onClick={() => trackNav('/', 'not_found')}>

@@ -37,7 +37,7 @@ export default function Links() {
           >
             <span className="lk-t">
               <b>▶ {latestGame.shortTitle}</b>
-              <span>Latest chapter · free on Android</span>
+              <span>Latest release · free on Android</span>
             </span>
             <i>→</i>
           </Link>

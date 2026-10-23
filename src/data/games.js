@@ -9,10 +9,11 @@ export const games = [
     number: '00',
     title: 'Five Nights In Lab: Horror PD',
     shortTitle: 'Five Nights In Lab',
-    eyebrow: 'Chapter 00 · Prequel',
-    eyebrowRed: false,
+    eyebrow: 'Chapter 00 · Prequel · Latest release',
+    eyebrowRed: true,
     trackLine: 'Prequel — the lab is still running — Subject #3808',
-    trackTag: 'Open',
+    trackTag: 'Latest',
+    trackTagNew: true,
     metaTitle: 'Five Nights In Lab: Horror PD — Free Android Horror Game',
     metaDescription:
       'Five Nights In Lab: Horror PD is a free first-person horror survival game for Android. Work the night shift in a Soviet laboratory, fix the systems and survive until morning while Test Subject #3808 is loose. Prequel to Project Dream.',
@@ -253,11 +254,10 @@ export const games = [
     number: '02',
     title: 'Cyborg Escape: Project Dream 2',
     shortTitle: 'Cyborg Escape',
-    eyebrow: 'Chapter 02 · Latest release',
-    eyebrowRed: true,
+    eyebrow: 'Chapter 02',
+    eyebrowRed: false,
     trackLine: 'Chapter 2 — lower levels — you are bleeding',
-    trackTag: 'Latest',
-    trackTagNew: true,
+    trackTag: 'Open',
     metaTitle: 'Cyborg Escape: Project Dream 2 — Free Android Horror Game',
     metaDescription:
       'Cyborg Escape: Project Dream 2 is a free first-person escape horror game for Android. Wounded and trapped underground, find medicine, solve the facility and get out alive while a rotten cyborg patrols the lower levels. Chapter 2.',
@@ -329,7 +329,7 @@ export const games = [
     ],
     dossierTag: 'Rotten Cyborg',
     dossier: [
-      ['Chapter', '02 — Latest'],
+      ['Chapter', '02'],
       ['Setting', 'Lower levels'],
       ['Threat', 'Rotten Cyborg'],
       ['Twist', 'Bleeding clock'],
@@ -371,7 +371,8 @@ export const games = [
 
 export const gameBySlug = (slug) => games.find((g) => g.slug === slug);
 
-// The release the bio-link page leads with.
+// The most recently released game (not the last chapter: Five Nights In Lab
+// came out last but sits first in the story). The bio-link page leads with it.
 export const latestGame = games.find((g) => g.trackTagNew);
 
 // ---------------------------------------------------------------------------
@@ -516,6 +517,3 @@ export const fanGames = [
 ];
 
 export const fanGameBySlug = (slug) => fanGames.find((g) => g.slug === slug);
-
-export const avatar =
-  'https://play-lh.googleusercontent.com/YT3AGVtwIgWng1O-LhEJjUQG0TEeq5BCzXZhS7h1V7Q3qjBTH2JVVawrGg_ahrgu_w=w512';
